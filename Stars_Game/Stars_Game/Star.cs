@@ -15,19 +15,17 @@ namespace Stars_Game
 
         }
 
-        
+        public override void Draw(Graphics g)
+        {
+            g.DrawImage(Alien_Texture, new RectangleF(_Position.X, _Position.Y,
+              _Size.Width, _Size.Height)); 
+
+        }
         public override void Update()
         {
             _Position.X += _Direction.X;
             if (_Position.X < 0)
                 _Position.X = Game.Width + _Size.Width;
-        }
-
-        public override void Draw(Graphics g)
-        {
-            g.DrawImage(Alien_Texture, new RectangleF(_Position.X, _Position.Y,
-              _Size.Width, _Size.Height));
-
         }
 
     }

@@ -24,10 +24,9 @@ namespace Stars_Game
 
         public virtual void Draw(Graphics g)
         {
-            g.DrawImage(Banana_Texture, new Rectangle(_Position.X, _Position.Y,
+            g.DrawImage(Banana_Texture, new RectangleF(_Position.X, _Position.Y,
                 _Size.Width, _Size.Height));//метод рисовки бананов
-            
-                
+           
         }
 
         public virtual void Update()
@@ -35,16 +34,12 @@ namespace Stars_Game
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
 
-            if (_Position.X < 0)
+            if (_Position.X < 0 && _Position.Y < 0)
                 _Direction.X *= -1;
-            if (_Position.Y < 0)
-                _Direction.Y *= -1;
-
-            if (_Position.X > Game.Width)
+          
+            if (_Position.X > Game.Width && _Position.Y > Game.Height)
                 _Position.X *= -1;
-            if (_Position.Y > Game.Height)
-                _Direction.Y *= -1;
-
+           
         }
     }
 }
