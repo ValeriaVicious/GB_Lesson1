@@ -12,6 +12,8 @@ namespace Stars_Game
         protected Point _Position;
         protected Point _Direction;
         protected Size _Size;
+        public Bitmap Banana_Texture = Resource.powerup_banana,
+                     Alien_Texture = Resource.alien_side_green;
 
         public VisualObject(Point Position, Point Direction, Size Size)
         {
@@ -22,8 +24,10 @@ namespace Stars_Game
 
         public virtual void Draw(Graphics g)
         {
-            g.DrawEllipse(Pens.White, _Position.X, _Position.Y,
-                _Size.Width, _Size.Height);
+            g.DrawImage(Banana_Texture, new Rectangle(_Position.X, _Position.Y,
+                _Size.Width, _Size.Height));//метод рисовки бананов
+            
+                
         }
 
         public virtual void Update()

@@ -15,6 +15,7 @@ namespace Stars_Game
 
         }
 
+        
         public override void Update()
         {
             _Position.X += _Direction.X;
@@ -24,10 +25,9 @@ namespace Stars_Game
 
         public override void Draw(Graphics g)
         {
-            g.DrawLine(Pens.White, _Position.X, _Position.Y,
-                _Position.X + _Size.Width, _Position.Y + _Size.Height);
-            g.DrawLine(Pens.AntiqueWhite, _Position.X + _Size.Width, _Position.Y,
-                _Position.X, _Position.Y + _Size.Height);
+            g.DrawImage(Alien_Texture, new RectangleF(_Position.X, _Position.Y,
+              _Size.Width, _Size.Height));
+
         }
 
     }
