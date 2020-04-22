@@ -19,7 +19,7 @@ namespace Stars_Game
         {
             g.DrawImage(Alien_Texture, new RectangleF(_Position.X, _Position.Y,
               _Size.Width, _Size.Height)); 
-
+           
         }
         public override void Update()
         {

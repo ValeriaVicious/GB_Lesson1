@@ -83,6 +83,16 @@ namespace Stars_Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap orion_nebula_11107_1920 {
+            get {
+                object obj = ResourceManager.GetObject("orion_nebula_11107_1920", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap powerup_banana {
             get {
                 object obj = ResourceManager.GetObject("powerup_banana", resourceCulture);

@@ -14,7 +14,8 @@ namespace Stars_Game
         protected Point _Direction;
         protected Size _Size;
         public Bitmap Banana_Texture = Resource.powerup_banana,
-                     Alien_Texture = Resource.alien_side_green;
+                      Alien_Texture = Resource.alien_side_green,
+                      Blue_stars = Resource.attack_blue;
        
 
         public VisualObject(Point Position, Point Direction, Size Size)
@@ -32,29 +33,17 @@ namespace Stars_Game
 
         }
 
-
-
         public virtual void Update()
         {
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
 
-            if (_Position.X < 0 || _Position.Y < 0)
+            if (_Position.X < 0 || _Position.Y < 0 || _Position.X > Game.Width || _Position.Y > Game.Height)
             {
                 _Direction.X *= -1;
                 _Direction.Y *= -1;
             }
-                
-                
-          
-            if (_Position.X > Game.Width || _Position.Y > Game.Height)
-            {
-                _Direction.X *= -1;
-                _Direction.Y *= -1;
-            }
-               
-                
-
+            
         }
     }
 }

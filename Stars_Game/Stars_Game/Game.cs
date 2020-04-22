@@ -65,7 +65,6 @@ namespace Stars_Game
 
         }
 
-
         public static void Load()
         {
             __GameObjects = new VisualObject[30];
