@@ -30,9 +30,6 @@ namespace Stars_Game
             g.DrawImage(Banana_Texture, new RectangleF(_Position.X, _Position.Y,
                 _Size.Width, _Size.Height));//метод рисовки бананов
 
-          /*  Image newImage = Image.FromFile("universe-2742113_1920.jpg");
-            Point point = new Point(100, 100);
-            g.DrawImage(newImage, point);*/
         }
 
 
@@ -42,12 +39,22 @@ namespace Stars_Game
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
 
-            if (_Position.X < 0 && _Position.Y < 0)
+            if (_Position.X < 0 || _Position.Y < 0)
+            {
                 _Direction.X *= -1;
+                _Direction.Y *= -1;
+            }
+                
+                
           
-            if (_Position.X > Game.Width && _Position.Y > Game.Height)
-                _Position.X *= -1;
-           
+            if (_Position.X > Game.Width || _Position.Y > Game.Height)
+            {
+                _Direction.X *= -1;
+                _Direction.Y *= -1;
+            }
+               
+                
+
         }
     }
 }
