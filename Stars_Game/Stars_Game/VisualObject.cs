@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Stars_Game
 {
@@ -14,6 +15,7 @@ namespace Stars_Game
         protected Size _Size;
         public Bitmap Banana_Texture = Resource.powerup_banana,
                      Alien_Texture = Resource.alien_side_green;
+       
 
         public VisualObject(Point Position, Point Direction, Size Size)
         {
@@ -22,12 +24,18 @@ namespace Stars_Game
             _Size = Size;
         }
 
+        
         public virtual void Draw(Graphics g)
         {
             g.DrawImage(Banana_Texture, new RectangleF(_Position.X, _Position.Y,
                 _Size.Width, _Size.Height));//метод рисовки бананов
-           
+
+          /*  Image newImage = Image.FromFile("universe-2742113_1920.jpg");
+            Point point = new Point(100, 100);
+            g.DrawImage(newImage, point);*/
         }
+
+
 
         public virtual void Update()
         {
