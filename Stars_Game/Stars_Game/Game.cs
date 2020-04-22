@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
+
 namespace Stars_Game
 {
 
@@ -20,9 +21,10 @@ namespace Stars_Game
 
         public static int Width { get; set; }
         public static int Height { get; set; }
+     
 
 
-        public static void Initialize(Form form)
+    public static void Initialize(Form form)
         {
             Width = form.Width;
             Height = form.Height;
@@ -42,8 +44,7 @@ namespace Stars_Game
             Draw();
         }
 
-        
-            
+      
         public static void Draw()
         {
 
@@ -51,9 +52,11 @@ namespace Stars_Game
             g.Clear(Color.Black);
 
             Image newImage = Image.FromFile("universe-2742113_1920.jpg");
-            Point point = new Point(100, 100);
-            g.DrawImage(newImage, point);
-            
+           
+            g.DrawImage(newImage, new RectangleF(0, 0,
+              Width, Height));
+          
+
             foreach (var game_object in __GameObjects)
 
                 game_object.Draw(g);
@@ -72,7 +75,7 @@ namespace Stars_Game
                 __GameObjects[i] = new VisualObject
                     (new Point(600, i * 20),
                     new Point(15 - i, 20 - i),
-                    new Size(25, 25));
+                    new Size(20, 20));
             }
 
             for (int i = __GameObjects.Length / 2; i < __GameObjects.Length; i++)

@@ -28,7 +28,7 @@ namespace Stars_Game
         public virtual void Draw(Graphics g)
         {
             g.DrawImage(Banana_Texture, new RectangleF(_Position.X, _Position.Y,
-                _Size.Width, _Size.Height));//метод рисовки бананов
+                _Size.Width, _Size.Height));
 
         }
 
