@@ -17,7 +17,7 @@ namespace Stars_Game
 
         public override void Draw(Graphics g)
         {
-            g.DrawImage(Alien_Texture, new RectangleF(_Position.X, _Position.Y,
+            g.DrawImage(Resource.alien_side_green, new RectangleF(_Position.X, _Position.Y,
               _Size.Width, _Size.Height)); 
            
         }
