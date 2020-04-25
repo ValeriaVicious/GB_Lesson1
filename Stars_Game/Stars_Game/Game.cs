@@ -12,16 +12,18 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Stars_Game
 {
-
+    
+    
     internal static class Game
     {
+        
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
 
-        public static int Width { get; set; }
-        public static int Height { get; set; }
+        public static int Width { get; private set; }
+        public static int Height { get; private set; }
      
 
 
@@ -100,17 +102,16 @@ namespace Stars_Game
 
     internal static class Game
     {
-           private static BufferedGraphicsContext __Context;
+        private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
 
         public static int Width { get; set; }
         public static int Height { get; set; }
-     
 
 
     public static void Initialize(Form form)
-        {
+    {
             Width = form.Width;
             Height = form.Height;
 
@@ -121,7 +122,7 @@ namespace Stars_Game
             Timer timer = new Timer { Interval = 100 };
             timer.Tick += OnVimerTick;
             timer.Start();
-        }
+     }
 
         private static void OnVimerTick(object sender, EventArgs e)
         {
