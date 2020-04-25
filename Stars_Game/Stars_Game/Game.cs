@@ -15,7 +15,8 @@ namespace Stars_Game
 
     internal static class Game
     {
-           private static BufferedGraphicsContext __Context;
+        
+        private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
 
