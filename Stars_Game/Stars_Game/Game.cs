@@ -15,7 +15,7 @@ namespace Stars_Game
 
     internal static class Game
     {
-        
+        private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
@@ -34,7 +34,7 @@ namespace Stars_Game
             Graphics g = form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer { Interval = 100 };
+            Timer timer = new Timer { Interval = __TimerInterval };
             timer.Tick += OnVimerTick;
             timer.Start();
         }
