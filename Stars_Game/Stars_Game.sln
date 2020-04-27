@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stars_Game", "Stars_Game\Stars_Game.csproj", "{83FF66D6-5078-44F9-964C-BC540AAC9FB4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1AC08C26-86CC-4BC3-A0F7-DC44C11929DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_Test_24.04.20", "Console_Test_24.04.20\Console_Test_24.04.20.csproj", "{08E4CDB4-D308-45B8-A319-33FD1316F1EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{83FF66D6-5078-44F9-964C-BC540AAC9FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83FF66D6-5078-44F9-964C-BC540AAC9FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83FF66D6-5078-44F9-964C-BC540AAC9FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08E4CDB4-D308-45B8-A319-33FD1316F1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08E4CDB4-D308-45B8-A319-33FD1316F1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08E4CDB4-D308-45B8-A319-33FD1316F1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08E4CDB4-D308-45B8-A319-33FD1316F1EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{08E4CDB4-D308-45B8-A319-33FD1316F1EF} = {1AC08C26-86CC-4BC3-A0F7-DC44C11929DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C0A8BE4-1116-4F4E-8500-A81261FE0A31}
