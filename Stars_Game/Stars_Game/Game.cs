@@ -50,7 +50,6 @@ namespace Stars_Game
 
             }
 
-            
             __Context = BufferedGraphicsManager.Current;
             Graphics g = game_form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
@@ -59,9 +58,6 @@ namespace Stars_Game
             timer.Tick += OnVimerTick;
             timer.Start();
 
-            Timer timer1 = new Timer { Interval = 10 };
-            timer1.Tick += OnVimerTick;
-            timer.Start();
         }
 
         private static void OnVimerTick(object sender, EventArgs e)
