@@ -9,26 +9,15 @@ using System.Windows.Forms;
 namespace Stars_Game.VisualObjects
 {
 
-    internal abstract class Background : ImageObject
+    public class Background
     {
 
-        ///<summary>Добавление картинки для фона из Ресурсов </summary>
-        public Background(Point Position, Point Direction,
-                        int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize), null)
-        {
-            
-        }
-
-        public override void Draw(Graphics g)
-        {
-            
-        }
-
-        public override void Update()
-        {
-            throw new NotImplementedException();
-        }
     }
+    ///<summary>Добавление картинки для фона из Ресурсов </summary>
+
+
 
 }
+
+
 

@@ -22,6 +22,7 @@ namespace Stars_Game
         private static VisualObject[] __GameObjects;
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
+        private static Bitmap background;
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -35,6 +36,7 @@ namespace Stars_Game
         {
             Width = game_form.Width;
             Height = game_form.Height;
+            background = new Bitmap(Properties.Resources.universe_back);
 
             if (game_form.Width < 0 || game_form.Width > 1000)
             {
@@ -48,13 +50,17 @@ namespace Stars_Game
 
             }
 
-
+            
             __Context = BufferedGraphicsManager.Current;
             Graphics g = game_form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
             Timer timer = new Timer { Interval = __TimerInterval };
             timer.Tick += OnVimerTick;
+            timer.Start();
+
+            Timer timer1 = new Timer { Interval = 10 };
+            timer1.Tick += OnVimerTick;
             timer.Start();
         }
 
@@ -104,10 +110,9 @@ namespace Stars_Game
 
         public static void Draw()
         {
-
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
-
+            g.DrawImage(background, 0, 0);
             foreach (var game_object in __GameObjects)
 
                 game_object?.Draw(g);
@@ -115,7 +120,6 @@ namespace Stars_Game
             __Bullet?.Draw(g);
             __Buffer.Render();
             
-
         }
 
 
