@@ -23,6 +23,7 @@ namespace Stars_Game
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
+        private static Timer __Timer;
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -54,10 +55,30 @@ namespace Stars_Game
             Graphics g = game_form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer { Interval = __TimerInterval };
-            timer.Tick += OnVimerTick;
-            timer.Start();
+            __Timer = new Timer { Interval = __TimerInterval };
+            __Timer.Tick += OnVimerTick;
+            __Timer.Start();
 
+            game_form.KeyDown += OnFormKeyDown;
+
+        }
+
+        private static void OnFormKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.ControlKey:
+                    __Bullet = new Bullet(__SpaceShip.Rect.Y);
+                    break;
+
+                case Keys.Up:
+                    __SpaceShip.MoveUp();
+                    break;
+
+                case Keys.Down:
+                    __SpaceShip.MoveDown();
+                    break;
+            }
         }
 
         private static void OnVimerTick(object sender, EventArgs e)
@@ -69,15 +90,6 @@ namespace Stars_Game
         public static void Load()
         {
             List<VisualObject> game_object = new List<VisualObject>();
-
-            /* for (int i = 0; i < 30; i++)
-             *//*{
-                 game_object.Add(new VisualObject
-                     (new Point(600, i * 20),
-                     new Point(15 - i, 20 - i),
-                     new Size(20, 20)));
-             }*/
-
 
             for (int i = 0; i < 10; i++)
             {
@@ -98,12 +110,28 @@ namespace Stars_Game
                     rnd.Next(0, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
-
             __Bullet = new Bullet(200);
             __GameObjects = game_object.ToArray();
 
+            __SpaceShip = new SpaceShip(new Point(10, 400), new Point(10, 10), new Size(400, 400));
+            __SpaceShip.Destroyed += OnShipDestroyed;
         }
 
+
+        /// <summary>
+        /// описание метода графики уничтожения корабля и конца игры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnShipDestroyed(object sender, EventArgs e)
+        {
+            __Timer.Stop();
+            var g = __Buffer.Graphics;
+            g.Clear(Color.DarkRed);
+            g.DrawString("Bad Monkey -\nDead Monkey!\nGame over.", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Gray, 300, 200);
+            g.DrawImage(Properties.Resources.spacemonkey_dead02, new Point(100, 100));
+            __Buffer.Render();
+        }
         public static void Draw()
         {
             Graphics g = __Buffer.Graphics;
@@ -113,9 +141,13 @@ namespace Stars_Game
 
                 game_object?.Draw(g);
 
+            __SpaceShip.Draw(g);
             __Bullet?.Draw(g);
+
+            if (!__Timer.Enabled) return;
+
             __Buffer.Render();
-            
+
         }
 
 
@@ -127,11 +159,11 @@ namespace Stars_Game
                 game_object?.Update();
                 __Bullet?.Update();
 
-                if (__Bullet is null || __Bullet.Rect.Left > Width)
+                /*if (__Bullet is null || __Bullet.Rect.Left > Width)
                 {
                     Random rnd = new Random();
                     __Bullet = new Bullet(rnd.Next(0, Height));
-                }
+                }*/
 
                 for (int i = 0; i < __GameObjects.Length; i++)
                 {
@@ -139,6 +171,10 @@ namespace Stars_Game
                     if (obj is ICollision)
                     {
                         var collision_object = (ICollision)obj;
+
+
+                        __SpaceShip.CheckCollision(collision_object);//столкновение объекта с кораблем
+
                         if (__Bullet != null)
                             if (__Bullet.CheckCollision(collision_object))
                             {

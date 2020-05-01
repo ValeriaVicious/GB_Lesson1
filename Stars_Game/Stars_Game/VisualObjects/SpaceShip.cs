@@ -9,6 +9,7 @@ namespace Stars_Game.VisualObjects
 {
     internal class SpaceShip : VisualObject, ICollision
     {
+
         private int _EnergyShip = 20;
         public int EnergyShip => _EnergyShip;
         public Rectangle Rect => new Rectangle(_Position, _Size);
@@ -17,12 +18,18 @@ namespace Stars_Game.VisualObjects
         /// событие/делегат уничтоженного корабля
         /// </summary>
         public event EventHandler Destroyed;
-        
+
         public SpaceShip(Point Position, Point Direction,
-                        int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize),
-                           Properties.Resources.spacemonkey_fly02)
+                         Size Size) : base(Position, Direction, new Size(), Properties.Resources.spacemonkey_fly02)
+                           
         {
         }
+
+        public override void Draw(Graphics g) 
+        {
+            
+        }
+        
 
         public bool CheckCollision(ICollision obj)
         {
@@ -34,12 +41,6 @@ namespace Stars_Game.VisualObjects
             return is_collision;
         }
 
-
-        public override void Draw(Graphics g)
-        {
-
-        }
-
         public override void Update() { }
 
         public void ChangeEnergyShip(int delta)
@@ -48,7 +49,7 @@ namespace Stars_Game.VisualObjects
 
             if (_EnergyShip < 0)
                 Destroyed.Invoke(this, EventArgs.Empty);
-            
+
         }
 
         public void MoveDown()
