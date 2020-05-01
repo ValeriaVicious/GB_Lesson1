@@ -103,6 +103,26 @@ namespace Stars_Game.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spacemonkey_dead02 {
+            get {
+                object obj = ResourceManager.GetObject("spacemonkey_dead02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spacemonkey_fly02 {
+            get {
+                object obj = ResourceManager.GetObject("spacemonkey_fly02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap universe_back {
             get {
                 object obj = ResourceManager.GetObject("universe_back", resourceCulture);
