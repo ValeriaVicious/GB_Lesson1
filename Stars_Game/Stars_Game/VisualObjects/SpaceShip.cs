@@ -12,6 +12,12 @@ namespace Stars_Game.VisualObjects
         private int _EnergyShip = 20;
         public int EnergyShip => _EnergyShip;
         public Rectangle Rect => new Rectangle(_Position, _Size);
+
+        /// <summary>
+        /// событие/делегат уничтоженного корабля
+        /// </summary>
+        public event EventHandler Destroyed;
+        
         public SpaceShip(Point Position, Point Direction,
                         int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize),
                            Properties.Resources.spacemonkey_fly02)
@@ -21,10 +27,11 @@ namespace Stars_Game.VisualObjects
         public bool CheckCollision(ICollision obj)
         {
             bool is_collision = Rect.IntersectsWith(obj.Rect);
-            if(is_collision && obj is Asteroids asteroids)
+            if (is_collision && obj is Asteroids asteroids)
             {
-                
+                ChangeEnergyShip(-asteroids.Power);
             }
+            return is_collision;
         }
 
 
@@ -38,6 +45,10 @@ namespace Stars_Game.VisualObjects
         public void ChangeEnergyShip(int delta)
         {
             _EnergyShip += delta;
+
+            if (_EnergyShip < 0)
+                Destroyed.Invoke(this, EventArgs.Empty);
+            
         }
 
         public void MoveDown()
