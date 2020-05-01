@@ -10,16 +10,18 @@ namespace Stars_Game.VisualObjects
 
     internal class Asteroids : ImageObject, ICollision
     {
+        public int Power { get; private set; } = 2;
+
 
         ///<summary>Добавление астероида из Ресурсов </summary>
         public Asteroids(Point Position, Point Direction,
-                        int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize),
-                            Properties.Resources.object_asteroid_02)
+                         int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize),
+                             Properties.Resources.object_asteroid_02)
         {
 
         }
 
-        public Rectangle Rect => new Rectangle(_Position,_Size);
+        public Rectangle Rect => new Rectangle(_Position, _Size);
 
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
 
@@ -32,7 +34,7 @@ namespace Stars_Game.VisualObjects
             {
                 _Direction.X *= -1;
                 _Direction.Y *= -1;
-              
+
             }
 
         }
