@@ -13,6 +13,7 @@ namespace Console_Test_24._04._20
     internal abstract class Storage<TItem> : IEnumerable<TItem>//благодаря интерфейсу IEnumerable можно использовать заданный класс как источник данных для цикла foreach
     {
         private readonly List<TItem> _Items = new List<TItem>();
+        private Action<TItem> _AddObservers;
 
         public int Count => _Items.Count;
 
@@ -28,6 +29,11 @@ namespace Console_Test_24._04._20
                 if (_Items.Contains(value)) return;
                 _Items[index] = value;
             }
+        }
+
+        public void SubscribeToAdd(Action<TItem> Observer)
+        {
+            _AddObservers = Observer;
         }
 
         public virtual void Add(TItem item)
