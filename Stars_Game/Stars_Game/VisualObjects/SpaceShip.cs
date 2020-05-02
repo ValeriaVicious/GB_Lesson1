@@ -23,9 +23,9 @@ namespace Stars_Game.VisualObjects
         /// событие/делегат уничтоженного корабля
         /// </summary>
         public event EventHandler Destroyed;
-        
 
-        
+
+
 
         public override void Draw(Graphics g)
         {
@@ -50,9 +50,9 @@ namespace Stars_Game.VisualObjects
             {
                 ChangeEnergyShip(+health.Health_Power);
             }
-            
+
             return is_collision;
-  
+
         }
 
         public override void Update() { }

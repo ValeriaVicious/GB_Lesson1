@@ -78,6 +78,7 @@ namespace Stars_Game
                 case Keys.Down:
                     __SpaceShip.MoveDown();
                     break;
+
             }
         }
 
