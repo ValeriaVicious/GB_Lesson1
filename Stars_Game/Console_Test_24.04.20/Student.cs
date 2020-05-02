@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Console_Test_24._04._20
 {
-    internal class Student : IComparable<Student>, IEquatable<Student>, IEquatable<string>
+    interface IEntity
+    {
+        int Id { get; set; }
+    }
+    internal class Student : IComparable<Student>, IEquatable<Student>, IEquatable<string>, IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
