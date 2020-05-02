@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,10 +9,8 @@ namespace Console_Test_24._04._20
     /// "Фасад" - прячем объект внутри класса обеспечивая 
     /// необходимый доступ к нему.
     /// Пример шаблона с угловыми скобками для перечисления 
-    /// имен классов для дальнейшей работы.
-    /// </summary>
-    /// <typeparam name="TItem"></typeparam>
-    internal abstract class Storage<TItem>
+    /// имен классов для дальнейшей работы. </summary>
+    internal abstract class Storage<TItem> : IEnumerable<TItem>//благодаря интерфейсу IEnumerable можно использовать заданный класс как источник данных для цикла foreach
     {
         private readonly List<TItem> _Items = new List<TItem>();
 
@@ -50,6 +49,20 @@ namespace Console_Test_24._04._20
         public virtual void Clear()
         {
             _Items.Clear();
+        }
+
+        /// <summary>
+        /// Реализация 2-х методов получения перечислителя объекта 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<TItem> GetEnumerator()
+        {
+            return _Items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
