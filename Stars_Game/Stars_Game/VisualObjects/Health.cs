@@ -12,7 +12,7 @@ namespace Stars_Game.VisualObjects
     {
         public int Health_Power { get; private set; } = 20;
         public Health(Point Position, Point Direction, int ImageSize) : 
-            base(Position, Direction, new Size(ImageSize, ImageSize), Properties.Resources.powerup_red_2x)
+            base(Position, Direction, new Size(ImageSize, ImageSize), Properties.Resources.powerup_banana)
         {
         }
 

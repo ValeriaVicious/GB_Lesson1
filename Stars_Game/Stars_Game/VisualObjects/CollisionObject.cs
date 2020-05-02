@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
     internal abstract class CollisionObject : VisualObject, ICollision
     {
         protected CollisionObject(Point Position, Point Direction, Size Size, object VisualObject)
-            : base(Position, Direction, Size, VisualObject)
+            : base(Position, Direction, Size)
         {
 
         }

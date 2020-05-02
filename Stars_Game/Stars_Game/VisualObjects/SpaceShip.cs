@@ -12,7 +12,7 @@ namespace Stars_Game.VisualObjects
 
         private int _EnergyShip = 100;
 
-        public SpaceShip(Point Position, Point Direction, Size Size, object Object) : base(Position, Direction, Size, Object)
+        public SpaceShip(Point Position, Point Direction, Size Size, object Object) : base(Position, Direction, Size)
         {
         }
 
