@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Console_Test_24._04._20
 {
-    internal class Student : IComparable<Student>
+    internal class Student : IComparable<Student>, IEquatable<Student>, IEquatable<string>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -43,6 +44,23 @@ namespace Console_Test_24._04._20
                 return +1;
             else
                 return -1;
+        }
+
+        public bool Equals([AllowNull] Student other)
+        {
+            if (other == null) return false;
+            return Name == other.Name && Surname == other.Surname && Patronimyc == other.Patronimyc;
+        }
+
+        /// <summary>
+        /// Сравнение со строкой
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals([AllowNull] string other)
+        {
+            if (other == null) return false;
+            return Name == other || Surname == other || Patronimyc == other;
         }
     }
 }
