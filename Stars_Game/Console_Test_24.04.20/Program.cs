@@ -33,7 +33,7 @@ namespace Console_Test_24._04._20
             decanat.Remove(student_to_remove);
 
             Student random_student = new Student { Name = rnd.GetValue("Иванов", "Шевцов", "Седых", "Гриченко", "Рыбкин") };
-
+            var random_rating = rnd.GetValue<int>(2, 3, 4, 5);
             Console.ReadKey();
 
         }
