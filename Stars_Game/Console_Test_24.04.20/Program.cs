@@ -19,7 +19,7 @@ namespace Console_Test_24._04._20
         {
 
             var decanat = new Decanat();
-
+            decanat.SubscribeToAdd(PrintStudents);
             Random rnd = new Random();
 
             for (int i = 1; i < 10; i++)
