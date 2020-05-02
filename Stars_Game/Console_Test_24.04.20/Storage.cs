@@ -51,11 +51,14 @@ namespace Console_Test_24._04._20
             _Items.Clear();
         }
 
-        /// <summary>
-        /// Реализация 2-х методов получения перечислителя объекта 
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerator<TItem> GetEnumerator()
+        public abstract void SaveToFile(string FileName);
+        public virtual void LoadFromFile(string FileName)
+        {
+            Clear();
+        }
+
+        ///<summary>Реализация 2-х методов получения перечислителя объекта</summary>
+         public IEnumerator<TItem> GetEnumerator()
         {
             return _Items.GetEnumerator();
         }

@@ -34,6 +34,11 @@ namespace Console_Test_24._04._20
 
             Student random_student = new Student { Name = rnd.GetValue("Иванов", "Шевцов", "Седых", "Гриченко", "Рыбкин") };
             var random_rating = rnd.GetValue<int>(2, 3, 4, 5);
+
+            decanat.SaveToFile("decanat.csv");
+            Decanat decanat2 = new Decanat();
+            decanat2.LoadFromFile("decanat.csv");
+            
             Console.ReadKey();
 
         }
