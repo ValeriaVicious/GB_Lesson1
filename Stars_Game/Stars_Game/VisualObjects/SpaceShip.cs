@@ -11,6 +11,11 @@ namespace Stars_Game.VisualObjects
     {
 
         private int _EnergyShip = 100;
+
+        public SpaceShip(Point Position, Point Direction, Size Size, object Object) : base(Position, Direction, Size, Object)
+        {
+        }
+
         public int EnergyShip => _EnergyShip;
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
@@ -20,17 +25,14 @@ namespace Stars_Game.VisualObjects
         public event EventHandler Destroyed;
         
 
-        public SpaceShip(Point Position, Point Direction,
-                         int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize), null)
-
-        {
-        }
+        
 
         public override void Draw(Graphics g)
         {
-            var rect = Rect;
+            /*var rect = Rect;
             g.FillEllipse(Brushes.White, rect);
-            g.DrawEllipse(Pens.Red, rect);
+            g.DrawEllipse(Pens.Red, rect);*/
+            g.DrawImage(Properties.Resources.spacemonkey_fly02, _Position.X, _Position.Y);
         }
 
 

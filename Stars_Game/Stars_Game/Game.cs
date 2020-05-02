@@ -125,7 +125,7 @@ namespace Stars_Game
             __GameObjects = game_object.ToArray();
 
             //корабль
-            __SpaceShip = new SpaceShip(new Point(10, 400), new Point(50, 50), new Size(100, 100));
+            __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
             __SpaceShip.Destroyed += OnShipDestroyed;
 
             
