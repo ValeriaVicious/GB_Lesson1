@@ -18,17 +18,21 @@ namespace Console_Test_24._04._20
             for (int i = 1; i < 10; i++)
                 decanat.Add(new Student
                 {
-                    Name = $"Имя студента {1}",
+                    Name = $"Имя студента {i}",
                     Surname = $"Фамилия студента {i}",
                     Patronimyc = $"Отчество студента {i}",
                     Ratings = rnd.GetValues(rnd.Next(20, 30), 3, 6)
                 });
 
+            foreach (Student student in decanat)
+            {
+                Console.WriteLine(student.Name);
+            }
 
             Student student_to_remove = decanat[0];
             decanat.Remove(student_to_remove);
 
-            Student random_student = new Student { Name = rnd.GetValue("Иванов", "Шевцов", "Седых") };
+            Student random_student = new Student { Name = rnd.GetValue("Иванов", "Шевцов", "Седых", "Гриченко", "Рыбкин") };
 
             Console.ReadKey();
 
