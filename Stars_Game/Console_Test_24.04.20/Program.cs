@@ -15,11 +15,19 @@ namespace Console_Test_24._04._20
     internal delegate void StudentProcessor(Student student);
     class Program
     {
+        private static void OnStudentsRemoved(Student student)
+        {
+            Console.WriteLine("Студент {0} отчислен.", student.Surname);
+        }
         static void Main(string[] args)
         {
 
             var decanat = new Decanat();
+            decanat.SubscribeToAdd(RateStudents);
             decanat.SubscribeToAdd(PrintStudents);
+
+            decanat.ITemRemoved += OnStudentsRemoved;
+
             Random rnd = new Random();
 
             for (int i = 1; i < 10; i++)
@@ -28,7 +36,7 @@ namespace Console_Test_24._04._20
                     Name = $"Имя студента {i}",
                     Surname = $"Фамилия студента {i}",
                     Patronimyc = $"Отчество студента {i}",
-                    Ratings = rnd.GetValues(rnd.Next(20, 30), 3, 6)
+                    /*Ratings = rnd.GetValues(rnd.Next(20, 30), 3, 6)*/
                 });
 
             /*foreach (Student student in decanat)

@@ -15,6 +15,7 @@ namespace Console_Test_24._04._20
         private readonly List<TItem> _Items = new List<TItem>();
         private Action<TItem> _AddObservers;//в одну переменную делегата можно положить большое кол-во методов
 
+        public event Action<TItem> ITemRemoved;
         public int Count => _Items.Count;
 
         public TItem this[int index]
@@ -33,7 +34,7 @@ namespace Console_Test_24._04._20
 
         public void SubscribeToAdd(Action<TItem> Observer)
         {
-            _AddObservers = Observer;
+            _AddObservers += Observer;
         }
 
         public virtual void Add(TItem item)
@@ -47,7 +48,14 @@ namespace Console_Test_24._04._20
 
         public virtual bool Remove(TItem item)
         {
-            return _Items.Remove(item);
+            bool result = _Items.Remove(item);
+
+            if(result)
+            {
+                ITemRemoved?.Invoke(item);
+            }
+
+            return result;
         }
 
         public virtual bool IsContains(TItem item)
