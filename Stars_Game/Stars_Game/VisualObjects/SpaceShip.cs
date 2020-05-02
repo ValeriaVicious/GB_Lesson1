@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
     internal class SpaceShip : VisualObject, ICollision
     {
 
-        private int _EnergyShip = 20;
+        private int _EnergyShip = 100;
         public int EnergyShip => _EnergyShip;
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
@@ -18,18 +18,22 @@ namespace Stars_Game.VisualObjects
         /// событие/делегат уничтоженного корабля
         /// </summary>
         public event EventHandler Destroyed;
+        
 
         public SpaceShip(Point Position, Point Direction,
-                         Size Size) : base(Position, Direction, new Size(), Properties.Resources.spacemonkey_fly02)
-                           
+                         int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize), null)
+
         {
         }
 
-        public override void Draw(Graphics g) 
+        public override void Draw(Graphics g)
         {
-            
+            var rect = Rect;
+            g.FillEllipse(Brushes.White, rect);
+            g.DrawEllipse(Pens.Red, rect);
         }
-        
+
+
 
         public bool CheckCollision(ICollision obj)
         {
@@ -38,7 +42,15 @@ namespace Stars_Game.VisualObjects
             {
                 ChangeEnergyShip(-asteroids.Power);
             }
+
+            //добавлено условие на получение здоровья
+            if (is_collision && obj is Health health)
+            {
+                ChangeEnergyShip(+health.Health_Power);
+            }
+            
             return is_collision;
+  
         }
 
         public override void Update() { }

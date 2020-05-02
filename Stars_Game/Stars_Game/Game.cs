@@ -105,16 +105,30 @@ namespace Stars_Game
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
 
+            const int health_count = 10;
+            const int health_size = 20;
+            const int health_speed = 15;
+
             for (int i = 0; i < asteroid_count; i++)
                 game_object.Add(new Asteroids(new Point(rnd.Next(0, Width),
                     rnd.Next(0, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
+            //инициализация хилок по списку, летают но пока ничего не делают
+            for (int i = 0; i < health_count; i++)
+            {
+                game_object.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                    new Point(-rnd.Next(0, health_speed), 0), health_size));
+            }
+
             __Bullet = new Bullet(200);
             __GameObjects = game_object.ToArray();
 
-            __SpaceShip = new SpaceShip(new Point(10, 400), new Point(10, 10), new Size(400, 400));
+            //корабль
+            __SpaceShip = new SpaceShip(new Point(10, 400), new Point(50, 50), new Size(100, 100));
             __SpaceShip.Destroyed += OnShipDestroyed;
+
+            
         }
 
 
@@ -128,7 +142,7 @@ namespace Stars_Game
             __Timer.Stop();
             var g = __Buffer.Graphics;
             g.Clear(Color.DarkRed);
-            g.DrawString("Bad Monkey -\nDead Monkey!\nGame over.", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Gray, 300, 200);
+            g.DrawString("Bad Monkey -\nDead Monkey!\nGame over.", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Gray, 300, 300);
             g.DrawImage(Properties.Resources.spacemonkey_dead02, new Point(100, 100));
             __Buffer.Render();
         }
@@ -141,7 +155,7 @@ namespace Stars_Game
 
                 game_object?.Draw(g);
 
-            __SpaceShip.Draw(g);
+            __SpaceShip?.Draw(g);
             __Bullet?.Draw(g);
 
             if (!__Timer.Enabled) return;
