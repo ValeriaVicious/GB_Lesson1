@@ -4,12 +4,14 @@ using System.Text;
 
 namespace Console_Test_24._04._20
 {
-    /// <summary>
+    /// <summary>Хранилище
+    /// "Фасад" - прячем объект внутри класса обеспечивая 
+    /// необходимый доступ к нему.
     /// Пример шаблона с угловыми скобками для перечисления 
-    /// имен классов для дальнейшей работы
+    /// имен классов для дальнейшей работы.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public abstract class Storage<TItem>
+    internal abstract class Storage<TItem>
     {
         private readonly List<TItem> _Items = new List<TItem>();
 
@@ -29,23 +31,23 @@ namespace Console_Test_24._04._20
             }
         }
 
-        public void Add(TItem item)
+        public virtual void Add(TItem item)
         {
             if (_Items.Contains(item)) return;
             _Items.Add(item);
         }
 
-        public bool Remove(TItem item)
+        public virtual bool Remove(TItem item)
         {
             return _Items.Remove(item);
         }
 
-        public bool IsContains(TItem item)
+        public virtual bool IsContains(TItem item)
         {
             return _Items.Contains(item);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             _Items.Clear();
         }
