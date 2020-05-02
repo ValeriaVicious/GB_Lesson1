@@ -6,6 +6,12 @@ using System.Diagnostics;
 
 namespace Console_Test_24._04._20
 {
+    /// <summary>
+    /// Создаем первый делегат строкового типа
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    internal delegate int StringProcessor(string str);
     class Program
     {
         static void Main(string[] args)
@@ -38,10 +44,17 @@ namespace Console_Test_24._04._20
             decanat.SaveToFile("decanat.csv");
             Decanat decanat2 = new Decanat();
             decanat2.LoadFromFile("decanat.csv");
-            
+
+            //Создали делегат, который принимает в значение метод
+            StringProcessor str_processor = new StringProcessor(GetStringLength);
+            int length = str_processor("Hey, Ho, Lets GO!");
             Console.ReadKey();
 
         }
 
+        private static int GetStringLength(string str)
+        {
+            return str.Length;
+        }
     }
 }
