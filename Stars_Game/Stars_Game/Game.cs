@@ -24,6 +24,7 @@ namespace Stars_Game
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
         private static Timer __Timer;
+        private static int score = 0;
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -129,9 +130,21 @@ namespace Stars_Game
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
             __SpaceShip.Destroyed += OnShipDestroyed;
 
-            
+
         }
 
+        /// <summary>
+        /// Метод сообщения астероида и подсчета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void BreakAsteroidsCount(object sender, EventArgs e)
+        {
+            var g = __Buffer.Graphics;
+            g.Clear(Color.Black);
+            g.DrawString($"Всего уничтоженных астероидов: {score.ToString()}", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Black, 40, 50);
+            __Buffer.Render();
+        }
 
         /// <summary>
         /// описание метода графики уничтожения корабля и конца игры
@@ -174,11 +187,6 @@ namespace Stars_Game
                 game_object?.Update();
                 __Bullet?.Update();
 
-                /*if (__Bullet is null || __Bullet.Rect.Left > Width)
-                {
-                    Random rnd = new Random();
-                    __Bullet = new Bullet(rnd.Next(0, Height));
-                }*/
 
                 for (int i = 0; i < __GameObjects.Length; i++)
                 {
@@ -195,6 +203,7 @@ namespace Stars_Game
                             {
                                 __Bullet = null;
                                 __GameObjects[i] = null;
+                                score++;
                             }
                     }
                 }
