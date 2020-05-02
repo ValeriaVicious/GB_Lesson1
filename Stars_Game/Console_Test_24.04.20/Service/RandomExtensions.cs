@@ -15,5 +15,11 @@ namespace Console_Test_24._04._20.Service
 
             return result;
         }
+
+        ///<summary>Шаблон метода, который способен работать с любым типом данных</summary>
+        public static TValue GetValue<TValue>(this Random rnd, params TValue[] values)
+        {
+            return values[rnd.Next(0, values.Length)];
+        }
     }
 }
