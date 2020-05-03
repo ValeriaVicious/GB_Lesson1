@@ -144,8 +144,8 @@ namespace Stars_Game
             __Timer.Stop();
             var g = __Buffer.Graphics;
             g.Clear(Color.DarkRed);
-            g.DrawString("Bad Monkey -\nDead Monkey!\nGame over.", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Gray, 300, 300);
-            g.DrawImage(Properties.Resources.spacemonkey_dead02, new Point(100, 100));
+            g.DrawString("Bad Monkey -\nDead Monkey!\nGame over.", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Gray, 200, 200);
+            g.DrawImage(Properties.Resources.spacemonkey_dead02, new Point(200, 100));
             __Buffer.Render();
         }
         public static void Draw()
