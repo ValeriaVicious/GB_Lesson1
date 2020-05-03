@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Stars_Game.VisualObjects;
+using ContentAlignment = System.Drawing.ContentAlignment;
 
 namespace Stars_Game
 {
@@ -134,19 +135,6 @@ namespace Stars_Game
         }
 
         /// <summary>
-        /// Метод сообщения астероида и подсчета
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void BreakAsteroidsCount(object sender, EventArgs e)
-        {
-            var g = __Buffer.Graphics;
-            g.Clear(Color.Black);
-            g.DrawString($"Всего уничтоженных астероидов: {score.ToString()}", new Font(FontFamily.GenericSerif, 40, FontStyle.Bold), Brushes.Black, 40, 50);
-            __Buffer.Render();
-        }
-
-        /// <summary>
         /// описание метода графики уничтожения корабля и конца игры
         /// </summary>
         /// <param name="sender"></param>
@@ -165,6 +153,8 @@ namespace Stars_Game
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
             g.DrawImage(background, 0, 0);
+            g.DrawString("Количество сбитых астероидов: " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 0);
+
             foreach (var game_object in __GameObjects)
 
                 game_object?.Draw(g);

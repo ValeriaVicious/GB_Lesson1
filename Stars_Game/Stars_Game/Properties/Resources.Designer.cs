@@ -73,6 +73,16 @@ namespace Stars_Game.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap object_asteroid_01_2x {
+            get {
+                object obj = ResourceManager.GetObject("object_asteroid_01_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap object_asteroid_02 {
             get {
                 object obj = ResourceManager.GetObject("object_asteroid_02", resourceCulture);
