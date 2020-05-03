@@ -29,10 +29,7 @@ namespace Stars_Game.VisualObjects
 
         public override void Draw(Graphics g)
         {
-            /*var rect = Rect;
-            g.FillEllipse(Brushes.White, rect);
-            g.DrawEllipse(Pens.Red, rect);*/
-            g.DrawImage(Properties.Resources.spacemonkey_fly02, _Position.X, _Position.Y);
+           g.DrawImage(Properties.Resources.spacemonkey_fly02, _Position.X, _Position.Y);
         }
 
 

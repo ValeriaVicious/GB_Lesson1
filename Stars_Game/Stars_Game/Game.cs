@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Stars_Game.VisualObjects;
-using ContentAlignment = System.Drawing.ContentAlignment;
+using System.IO;
 
 namespace Stars_Game
 {
@@ -109,8 +109,8 @@ namespace Stars_Game
             const int asteroid_max_speed = 20;
 
             const int health_count = 10;
-            const int health_size = 20;
-            const int health_speed = 15;
+            const int health_size = 25;
+            const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
                 game_object.Add(new Asteroids(new Point(rnd.Next(0, Width),
@@ -148,6 +148,8 @@ namespace Stars_Game
             g.DrawImage(Properties.Resources.spacemonkey_dead02, new Point(200, 100));
             __Buffer.Render();
         }
+
+
         public static void Draw()
         {
             Graphics g = __Buffer.Graphics;
