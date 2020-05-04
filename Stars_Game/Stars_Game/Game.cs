@@ -164,6 +164,10 @@ namespace Stars_Game
             __SpaceShip?.Draw(g);
             __Bullet?.Draw(g);
 
+            if (__SpaceShip != null)
+
+                g.DrawString("Здоровье мартышки: " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 40);
+
             if (!__Timer.Enabled) return;
 
             __Buffer.Render();
