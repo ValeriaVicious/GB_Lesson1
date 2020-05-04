@@ -13,12 +13,14 @@ namespace Stars_Game.VisualObjects
         protected Point _Position;
         protected Point _Direction;
         protected Size _Size;
+        
       
-        protected VisualObject(Point Position, Point Direction, Size Size, object VisualObject)
+        protected VisualObject(Point Position, Point Direction, Size Size)
         {
             _Position = Position;
             _Direction = Direction;
             _Size = Size;
+            
         }
 
 

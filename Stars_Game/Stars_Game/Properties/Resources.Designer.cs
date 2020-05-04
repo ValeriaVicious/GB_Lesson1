@@ -73,6 +73,16 @@ namespace Stars_Game.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap object_asteroid_01_2x {
+            get {
+                object obj = ResourceManager.GetObject("object_asteroid_01_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap object_asteroid_02 {
             get {
                 object obj = ResourceManager.GetObject("object_asteroid_02", resourceCulture);
@@ -96,6 +106,46 @@ namespace Stars_Game.Properties {
         internal static System.Drawing.Bitmap powerup_blue {
             get {
                 object obj = ResourceManager.GetObject("powerup_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap powerup_red_2x {
+            get {
+                object obj = ResourceManager.GetObject("powerup_red_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spacemonkey_dead02 {
+            get {
+                object obj = ResourceManager.GetObject("spacemonkey_dead02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spacemonkey_fly01 {
+            get {
+                object obj = ResourceManager.GetObject("spacemonkey_fly01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spacemonkey_fly02 {
+            get {
+                object obj = ResourceManager.GetObject("spacemonkey_fly02", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

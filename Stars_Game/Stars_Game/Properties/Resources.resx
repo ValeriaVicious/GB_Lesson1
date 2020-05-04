@@ -121,6 +121,9 @@
   <data name="alien_side_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\alien_side_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="object_asteroid_01_2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object_asteroid_01@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="object_asteroid_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\object_asteroid_02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -129,6 +132,18 @@
   </data>
   <data name="powerup_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\powerup_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="powerup_red_2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\powerup_red@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spacemonkey_dead02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spacemonkey_dead02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spacemonkey_fly01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spacemonkey_fly01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spacemonkey_fly02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spacemonkey_fly02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="universe_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\universe-2742113_1920.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

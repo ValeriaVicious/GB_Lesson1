@@ -11,7 +11,7 @@ namespace Stars_Game.VisualObjects
     {
         private readonly Image _Image;
         protected ImageObject(Point Position, Point Direction,
-            Size Size, Image Image) : base(Position, Direction, Size, Image)
+            Size Size, Image Image) : base(Position, Direction, Size)
         {
             _Image = Image;
 

@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
     class Star : VisualObject
     {
         public Star(Point Position, Point Direction,
-            int Size) : base(Position, Direction, new Size(Size, Size), null)
+            int Size) : base(Position, Direction, new Size(Size, Size))
         {
 
         }

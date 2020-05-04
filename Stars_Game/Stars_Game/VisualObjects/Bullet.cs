@@ -24,9 +24,7 @@ namespace Stars_Game.VisualObjects
         public override void Draw(Graphics g)
         {
             g.DrawImage(Properties.Resources.powerup_blue, new Rectangle(_Position, _Size));
-            /*var rect = new Rectangle(_Position, _Size);
-            g.FillEllipse(Brushes.AliceBlue, rect);
-            g.DrawEllipse(Pens.Red, rect);*/
+            
         }
 
 

@@ -7,25 +7,21 @@ using System.Threading.Tasks;
 
 namespace Stars_Game.VisualObjects
 {
-
-    internal class Asteroids : ImageObject, ICollision
+    /// <summary>Класс объекта для пополнения здоровья игрока</summary>
+    internal class Health : ImageObject, ICollision
     {
-        public int Power { get; private set; } = 15;
-
-
-        ///<summary>Добавление астероида из Ресурсов </summary>
-        public Asteroids(Point Position, Point Direction,
-                         int ImageSize) : base(Position, Direction, new Size(ImageSize, ImageSize),
-                             Properties.Resources.object_asteroid_02)
+        public int Health_Power { get; private set; } = 10;
+        public Health(Point Position, Point Direction, int ImageSize) : 
+            base(Position, Direction, new Size(ImageSize, ImageSize), Properties.Resources.powerup_banana)
         {
-
         }
 
-        public Rectangle Rect => new Rectangle(_Position, _Size);
+        public Rectangle Rect => new Rectangle();
 
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
+        
 
-        public override void Update()
+        public override void Update()//доработать
         {
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
@@ -36,10 +32,6 @@ namespace Stars_Game.VisualObjects
                 _Direction.Y *= -1;
 
             }
-
         }
     }
 }
-
-
-

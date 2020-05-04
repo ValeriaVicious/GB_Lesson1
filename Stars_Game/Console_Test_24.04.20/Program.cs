@@ -1,71 +1,102 @@
 ﻿using Console_Test_24._04._20.Loggers;
+using Console_Test_24._04._20.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Console_Test_24._04._20
 {
+    /// <summary>
+    /// Создаем первый делегат строкового типа
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    internal delegate int StringProcessor(string str);
+    internal delegate void StudentProcessor(Student student);
     class Program
     {
+        private static void OnStudentsRemoved(Student student)
+        {
+            Console.WriteLine("Студент {0} отчислен.", student.Surname);
+        }
         static void Main(string[] args)
         {
-            /*Logger log = new DebugOutputLogger();*/
-            /*Logger log = new Console_Logger();*/
-            /*Logger log = new TextFileLogger("text.log");*/
-            /*Logger log = new TraceLogger();*/
 
-            /*Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
-            Trace.Listeners.Add(new XmlWriterTraceListener("logger.log.xml"));
+            var decanat = new Decanat();
+            decanat.SubscribeToAdd(RateStudents);
+            decanat.SubscribeToAdd(PrintStudents);
 
-            CombineLogger combine_log = new CombineLogger();
-            combine_log.Add(new Console_Logger());
-            combine_log.Add(new DebugOutputLogger());
-            combine_log.Add(new TraceLogger());
-            combine_log.Add(new TextFileLogger("new_log.log"));
+            decanat.ITemRemoved += OnStudentsRemoved;
 
-            Ilogger log = combine_log;
-            combine_log.LogInformation("Message1");
-            combine_log.LogWarning("Info Message");
-            combine_log.LogError("Error message");
+            Random rnd = new Random();
 
-            
-            using(var file_logger = new TextFileLogger("hello.log"))
+            for (int i = 1; i < 10; i++)
+                decanat.Add(new Student
+                {
+                    Name = $"Имя студента {i}",
+                    Surname = $"Фамилия студента {i}",
+                    Patronimyc = $"Отчество студента {i}",
+                    /*Ratings = rnd.GetValues(rnd.Next(20, 30), 3, 6)*/
+                });
+
+            /*foreach (Student student in decanat)
             {
-                file_logger.LogInformation("hello");
-            }
+                Console.WriteLine(student.Name);
+            }*/
 
-            
+            Student student_to_remove = decanat[0];
+            decanat.Remove(student_to_remove);
 
-            combine_log.Flush();*/
+            Student random_student = new Student { Surname = rnd.GetValue("Иванов", "Шевцов", "Седых", "Гриченко", "Рыбкин") };
+            /*var random_rating = rnd.GetValue<int>(2, 3, 4, 5);*/
 
-            var list = new List<Workers>
-            {
-                new FixPay("Джон", 7000),
-                new FixPay("Энтони", 5200),
-                new FixPay("Сьюзен", 8500)
+            decanat.SaveToFile("decanat.csv");
+            Decanat decanat2 = new Decanat();
+            decanat2.LoadFromFile("decanat.csv");
 
-            };
+            //Создали делегат, который принимает в значение метод
+            StringProcessor str_processor = new StringProcessor(GetStringLength);
+            int length = str_processor("Hey, Ho, Lets GO!");
 
-            list.Sort();
-            foreach(var workers in list)
-            {
-                Console.WriteLine(workers);
-            }
+            /*StudentProcessor process = new StudentProcessor(PrintStudents);
+            process(random_student);
+            process = RateStudents;//пример, как можно написать, вместо new
+            process(random_student);
+            process = PrintStudents;
+            process(random_student);*/
+
+            ProcessStudents(decanat2, RateStudents);
+            ProcessStudents(decanat2, PrintStudents);
+
+            Decanat decanat3 = new Decanat();
+            ProcessStudents(decanat2, decanat3.Add);//где-то ошибка, список не реализуется
 
             Console.ReadKey();
+
         }
 
-        /*private static double ComputerLongDataValue(int Count, Ilogger Log)
+        private static int GetStringLength(string str)
         {
-            var result = 0;
-            for (int i = 0; i < Count; i++)
-            {
-                result++;
-                Log.Log($"Вычисление итерации {i}");
-                System.Threading.Thread.Sleep(100);
-            }
-            return result;
-        }*/
-    }
+            return str.Length;
+        }
 
+        private static void PrintStudents(Student student)
+        {
+            Console.WriteLine("[{0}] {1} {2} {3} - {4}", student.Id, student.Surname,
+                student.Name, student.Patronimyc, student.AverageRating);//исключение из-за некорректного формата входящей строки//проблема решена, синтаксическая ошибка
+        }
+
+        private static void RateStudents(Student student)
+        {
+            Random rnd = new Random();
+            student.Ratings.AddRange(rnd.GetValues(5, 2, 6));
+        }
+
+
+        private static void ProcessStudents(IEnumerable<Student> students, StudentProcessor studentProcessor)
+        {
+            foreach (Student student in students)
+                studentProcessor(student);
+        }
+    }
 }

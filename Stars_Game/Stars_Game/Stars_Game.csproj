@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="VisualObjects\Background.cs" />
     <Compile Include="VisualObjects\Bullet.cs" />
+    <Compile Include="VisualObjects\Health.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
     <Compile Include="VisualObjects\SpaceShip.cs" />
     <Compile Include="VisualObjects\Star.cs" />
@@ -121,6 +122,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\universe-2742113_1920.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spacemonkey_dead02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spacemonkey_fly02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerup_red%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spacemonkey_fly01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\object_asteroid_01%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
