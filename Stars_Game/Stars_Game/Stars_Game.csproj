@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="VisualObjects\Background.cs" />
     <Compile Include="VisualObjects\Bullet.cs" />
+    <Compile Include="VisualObjects\Game_Interface.cs" />
     <Compile Include="VisualObjects\Health.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
     <Compile Include="VisualObjects\SpaceShip.cs" />

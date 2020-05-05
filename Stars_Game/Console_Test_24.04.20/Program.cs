@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
+using System.Linq;
 
 namespace Console_Test_24._04._20
 {
@@ -21,21 +23,40 @@ namespace Console_Test_24._04._20
             List<Student> student_list = new List<Student>(100);
 
             int id = 1;
+
             foreach (Student student in GetStudents(__NamesFile))
             {
                 student.Id = id++;
                 student_list.Add(student);
+
             }
 
+            /*student_list.RemoveAt(4);
+            *//*
+                        //Отсортировали по возрастанию фамилии
+                        student_list.Sort((s1, s2) => StringComparer.Ordinal.Compare(s1.Surname, s2.Surname));
 
-            student_list.RemoveAt(4);
+                        //Отсортировали по убыванию имени
+                        student_list.Sort((s1, s2) => StringComparer.Ordinal.Compare(s2.Name, s1.Name));*/
+            /*student_list.Clear();
 
-            Console.ReadKey(); 
+            student_list.AddRange(GetStudents(__NamesFile));
+
+            Student[] students_array = student_list.ToArray();
+
+            Dictionary<string, List<Student>> surename_students = new Dictionary<string, List<Student>>();
+            surename_students.Add("qwe", new List<Student>());*/
+
+            IEnumerable<Student> students = GetStudents(__NamesFile);
+
+            Console.ReadKey();
 
         }
 
         private static IEnumerable<Student> GetStudents(string FileName)
         {
+            Random rnd = new Random();
+            
             using (StreamReader file = File.OpenText(FileName))
             {
                 while (!file.EndOfStream)
@@ -51,6 +72,7 @@ namespace Console_Test_24._04._20
                     student.Surname = components[0];
                     student.Name = components[1];
                     student.Patronimyc = components[2];
+                    student.Ratings = rnd.GetValues(20, 2, 6);
 
                     yield return student;
                 }

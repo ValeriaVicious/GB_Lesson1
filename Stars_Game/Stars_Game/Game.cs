@@ -20,12 +20,13 @@ namespace Stars_Game
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        private static VisualObject[] __GameObjects;
+        private static VisualObject[] __GameObjects;//
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
         private static Timer __Timer;
         private static int score = 0;
+        private static Game_Interface __Interface;
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -155,8 +156,12 @@ namespace Stars_Game
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
             g.DrawImage(background, 0, 0);
-            g.DrawString("Количество сбитых астероидов: " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 0);
 
+            __Interface = new Game_Interface(new Point(0, 0), new Point(0, 0), new Size(0, 0));
+            g.DrawString("" + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
+            g.DrawString("" + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 265, 40);
+            __Interface.Draw(g);
+            
             foreach (var game_object in __GameObjects)
 
                 game_object?.Draw(g);
@@ -166,9 +171,7 @@ namespace Stars_Game
 
             if (__SpaceShip != null)
 
-                g.DrawString("Здоровье мартышки: " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 40);
-
-            if (!__Timer.Enabled) return;
+                if (!__Timer.Enabled) return;
 
             __Buffer.Render();
 
@@ -190,9 +193,6 @@ namespace Stars_Game
                     if (obj is ICollision)
                     {
                         var collision_object = (ICollision)obj;
-
-
-                        __SpaceShip.CheckCollision(collision_object);//столкновение объекта с кораблем
 
                         if (__Bullet != null)
                             if (__Bullet.CheckCollision(collision_object))
