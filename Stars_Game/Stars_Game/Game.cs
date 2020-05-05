@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Stars_Game
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        private static VisualObject[] __GameObjects;//
+        private static VisualObject[] __GameObjects;//нужно переделать массив в список
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
@@ -93,11 +94,11 @@ namespace Stars_Game
 
         public static void Load()
         {
-            List<VisualObject> game_object = new List<VisualObject>();
+            List<VisualObject> game_object = new List<VisualObject>();//коллекция объектов
 
             for (int i = 0; i < 10; i++)
             {
-                game_object.Add(new Star(
+                game_object.Add(new Star(//это наши НЛОшки
                     new Point(600, i / 2 * 20),
                     new Point(-i, 0), 30));
 
@@ -105,7 +106,7 @@ namespace Stars_Game
 
             Random rnd = new Random();
 
-            const int asteroid_count = 10;
+            const int asteroid_count = 10;//здесь мы инициализируем астероиды и хилки
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
 
@@ -114,8 +115,8 @@ namespace Stars_Game
             const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
-                game_object.Add(new Asteroids(new Point(rnd.Next(0, Width),
-                    rnd.Next(0, Height)),
+                game_object.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
+                    rnd.Next(150, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
             //инициализация хилок по списку, летают но пока ничего не делают
@@ -126,7 +127,7 @@ namespace Stars_Game
             }
 
             __Bullet = new Bullet(200);
-            __GameObjects = game_object.ToArray();
+            __GameObjects = game_object.ToArray();//здесь мы превратили список в массив
 
             //корабль
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
@@ -158,10 +159,10 @@ namespace Stars_Game
             g.DrawImage(background, 0, 0);
 
             __Interface = new Game_Interface(new Point(0, 0), new Point(0, 0), new Size(0, 0));
-            g.DrawString("" + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
-            g.DrawString("" + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 265, 40);
+            g.DrawString(" " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
+            g.DrawString(" " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 265, 40);
             __Interface.Draw(g);
-            
+
             foreach (var game_object in __GameObjects)
 
                 game_object?.Draw(g);
@@ -176,8 +177,6 @@ namespace Stars_Game
             __Buffer.Render();
 
         }
-
-
 
         public static void Update()
         {
@@ -201,7 +200,9 @@ namespace Stars_Game
                                 __GameObjects[i] = null;
                                 score++;
                             }
+
                     }
+
                 }
             }
         }
