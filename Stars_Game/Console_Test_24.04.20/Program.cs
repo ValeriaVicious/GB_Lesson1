@@ -18,7 +18,19 @@ namespace Console_Test_24._04._20
             foreach (Student student in GetStudents(__NamesFile))
                 Console.WriteLine(student.Surname + " " + student.Name + " " + student.Patronimyc);
 
-            Console.ReadKey();
+            List<Student> student_list = new List<Student>(100);
+
+            int id = 1;
+            foreach (Student student in GetStudents(__NamesFile))
+            {
+                student.Id = id++;
+                student_list.Add(student);
+            }
+
+
+            student_list.RemoveAt(4);
+
+            Console.ReadKey(); 
 
         }
 
@@ -26,7 +38,7 @@ namespace Console_Test_24._04._20
         {
             using (StreamReader file = File.OpenText(FileName))
             {
-                while(!file.EndOfStream)
+                while (!file.EndOfStream)
                 {
                     string line = file.ReadLine();
 
