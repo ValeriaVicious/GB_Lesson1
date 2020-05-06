@@ -57,7 +57,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="VisualObjects\Background.cs" />
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\Game_Interface.cs" />
     <Compile Include="VisualObjects\Health.cs" />

@@ -13,71 +13,49 @@ namespace Console_Test_24._04._20
     class Program
     {
 
-        private const string __NamesFile = "Names.txt";
+        /*2. Дана коллекция List<T>, требуется подсчитать, сколько раз каждый элемент встречается в данной коллекции:
 
-        static void Main(string[] args)
+        а) для целых чисел;
+        б) *для обобщенной коллекции;*/
+
+
+        public static Dictionary<int, int> myDictionary1(List<int> s)
         {
-            foreach (Student student in GetStudents(__NamesFile))
-                Console.WriteLine(student.Surname + " " + student.Name + " " + student.Patronimyc);
-
-            List<Student> student_list = new List<Student>(100);
-
-            int id = 1;
-
-            foreach (Student student in GetStudents(__NamesFile))
+            Dictionary<int, int> dictionary = new Dictionary<int, int>();
+            foreach (int i in s)
             {
-                student.Id = id++;
-                student_list.Add(student);
-
+                if (!dictionary.ContainsKey(i))
+                    dictionary.Add(i, 1);
+                else
+                    dictionary[i]++;
             }
+            return dictionary;
+        }
 
-            /*student_list.RemoveAt(4);
-            *//*
-                        //Отсортировали по возрастанию фамилии
-                        student_list.Sort((s1, s2) => StringComparer.Ordinal.Compare(s1.Surname, s2.Surname));
+        public static Dictionary<T, int> myDictionary2<T, value>(List<T> s)
+        {
+            Dictionary<T, int> dictionary = new Dictionary<T, int>();
+            foreach (T i in s)
+            {
+                if (!dictionary.ContainsKey(i))
+                    dictionary.Add(i, 1);
+                else
+                    dictionary[i]++;
+            }
+            return dictionary;
+        }
 
-                        //Отсортировали по убыванию имени
-                        student_list.Sort((s1, s2) => StringComparer.Ordinal.Compare(s2.Name, s1.Name));*/
-            /*student_list.Clear();
 
-            student_list.AddRange(GetStudents(__NamesFile));
-
-            Student[] students_array = student_list.ToArray();
-
-            Dictionary<string, List<Student>> surename_students = new Dictionary<string, List<Student>>();
-            surename_students.Add("qwe", new List<Student>());*/
-
-            IEnumerable<Student> students = GetStudents(__NamesFile);
+        static void Main()
+        {
+            List<string> str_list = new List<string>() { "fox", "bear", "dog", "cat" };
+            myDictionary2<string, int>(str_list);
+            
+            List<int> integer_list = new List<int>() { 1, 22, 3, 42, 5, 22, 9, 5, 36, 74 };
+            myDictionary1(integer_list);
 
             Console.ReadKey();
 
         }
-
-        private static IEnumerable<Student> GetStudents(string FileName)
-        {
-            Random rnd = new Random();
-            
-            using (StreamReader file = File.OpenText(FileName))
-            {
-                while (!file.EndOfStream)
-                {
-                    string line = file.ReadLine();
-
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-
-                    string[] components = line.Split(' ');
-                    if (components.Length != 3) continue;
-
-                    Student student = new Student();
-                    student.Surname = components[0];
-                    student.Name = components[1];
-                    student.Patronimyc = components[2];
-                    student.Ratings = rnd.GetValues(20, 2, 6);
-
-                    yield return student;
-                }
-            }
-        }
-
     }
 }
