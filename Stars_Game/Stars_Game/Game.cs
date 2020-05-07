@@ -231,15 +231,15 @@ namespace Stars_Game
                     {
                         RegenerateAsteroids();
                     }
-                        
- ;
-                   /* if (__SpaceShip.CheckCollision(__Asteroids[i]))//вот здесь исключение не пойму почему, ругается на индекс за пределом диапазона 
-                    {
-                        __SpaceShip.EnergyLow(rnd.Next(1, 5));
 
-                        if (__SpaceShip.EnergyShip <= 0) __SpaceShip.Update();
+                }
 
-                    }*/
+                if (__SpaceShip.CheckCollision(obj))
+                {
+                    __SpaceShip.EnergyLow(rnd.Next(1, 5));
+
+                    if (__SpaceShip.EnergyShip <= 0) __SpaceShip.Update();
+
                 }
 
             }
