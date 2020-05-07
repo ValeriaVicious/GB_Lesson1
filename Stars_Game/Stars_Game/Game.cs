@@ -137,6 +137,21 @@ namespace Stars_Game
 
         }
 
+        /// <summary>Метод регенерации астероидов</summary>
+        public static void RegenerateAsteroids()
+        {
+            const int asteroid_count = 10;
+            const int asteroid_size = 25;
+            const int asteroid_max_speed = 22;
+
+            for (int i = 0; i < asteroid_count + 1; i++)
+            {
+                __Asteroids.Add(new Asteroids(new Point(rnd.Next(200, Width), rnd.Next(200, Height)),
+                    new Point(-rnd.Next(0, asteroid_max_speed)), asteroid_size));
+            }
+
+        }
+
         /// <summary>
         /// описание метода графики уничтожения корабля и конца игры
         /// </summary>
@@ -168,7 +183,7 @@ namespace Stars_Game
 
                 game_object?.Draw(g);
 
-            foreach(Asteroids asteroids in __Asteroids)
+            foreach (Asteroids asteroids in __Asteroids)
             {
                 asteroids.Draw(g);
             }
@@ -192,7 +207,7 @@ namespace Stars_Game
                 __Bullet?.Update();
             }
 
-            foreach(Asteroids asteroids in __Asteroids)
+            foreach (Asteroids asteroids in __Asteroids)
             {
                 asteroids.Update();
             }
@@ -211,13 +226,20 @@ namespace Stars_Game
                             __Asteroids.RemoveAt(i);
                             score++;
                         }
-                    if(__SpaceShip.CheckCollision(__Asteroids[i]))//вот здесь исключение не пойму почему, ругается на индекс за пределом диапазона 
+
+                    if (__Asteroids.Count == 0)
+                    {
+                        RegenerateAsteroids();
+                    }
+                        
+ ;
+                   /* if (__SpaceShip.CheckCollision(__Asteroids[i]))//вот здесь исключение не пойму почему, ругается на индекс за пределом диапазона 
                     {
                         __SpaceShip.EnergyLow(rnd.Next(1, 5));
 
-                        if (__SpaceShip.EnergyShip <= 0)  __SpaceShip.Update();
+                        if (__SpaceShip.EnergyShip <= 0) __SpaceShip.Update();
 
-                    }
+                    }*/
                 }
 
             }
