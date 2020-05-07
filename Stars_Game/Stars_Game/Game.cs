@@ -22,6 +22,7 @@ namespace Stars_Game
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static List<VisualObject> __GameObjects = new List<VisualObject>();//нужно переделать массив в список
+        private static List<Asteroids> __Asteroids = new List<Asteroids>();//создали отдельный список для астероидов
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
@@ -94,7 +95,7 @@ namespace Stars_Game
 
         public static void Load()
         {
-            
+
             for (int i = 0; i < 10; i++)
             {
                 __GameObjects.Add(new Star(//это наши НЛОшки
@@ -114,7 +115,7 @@ namespace Stars_Game
             const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
-                __GameObjects.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
+                __Asteroids.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
                     rnd.Next(150, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
@@ -126,7 +127,7 @@ namespace Stars_Game
             }
 
             __Bullet = new Bullet(200);
-            
+
 
             //корабль
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
@@ -166,6 +167,11 @@ namespace Stars_Game
 
                 game_object?.Draw(g);
 
+            foreach(Asteroids asteroids in __Asteroids)
+            {
+                asteroids.Draw(g);
+            }
+
             __SpaceShip?.Draw(g);
             __Bullet?.Draw(g);
 
@@ -179,31 +185,36 @@ namespace Stars_Game
 
         public static void Update()
         {
-            foreach(VisualObject game_object in __GameObjects)
+            foreach (VisualObject game_object in __GameObjects)
             {
                 game_object?.Update();
                 __Bullet?.Update();
             }
-              
-                for (int i = 0; i < __GameObjects.Count; i++)
+
+            foreach(Asteroids asteroids in __Asteroids)
+            {
+                asteroids.Update();
+            }
+
+            for (int i = 0; i < __Asteroids.Count; i++)
+            {
+                var obj = __Asteroids[i];
+                if (obj is ICollision)
                 {
-                    var obj = __GameObjects[i];
-                    if (obj is ICollision)
-                    {
-                        var collision_object = (ICollision)obj;
+                    var collision_object = (ICollision)obj;
 
-                        if (__Bullet != null)
-                            if (__Bullet.CheckCollision(collision_object))
-                            {
-                                __Bullet = null;
-                                __GameObjects[i] = null;
-                                score++;
-                            }
-
-                    }
+                    if (__Bullet != null)
+                        if (__Bullet.CheckCollision(collision_object))
+                        {
+                            __Bullet = null;
+                            __Asteroids.RemoveAt(i);
+                            score++;
+                        }
 
                 }
+
             }
         }
     }
+}
 
