@@ -21,7 +21,7 @@ namespace Stars_Game
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        private static VisualObject[] __GameObjects;//нужно переделать массив в список
+        private static List<VisualObject> __GameObjects = new List<VisualObject>();//нужно переделать массив в список
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
@@ -94,11 +94,10 @@ namespace Stars_Game
 
         public static void Load()
         {
-            List<VisualObject> game_object = new List<VisualObject>();//коллекция объектов
-
+            
             for (int i = 0; i < 10; i++)
             {
-                game_object.Add(new Star(//это наши НЛОшки
+                __GameObjects.Add(new Star(//это наши НЛОшки
                     new Point(600, i / 2 * 20),
                     new Point(-i, 0), 30));
 
@@ -115,19 +114,19 @@ namespace Stars_Game
             const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
-                game_object.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
+                __GameObjects.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
                     rnd.Next(150, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
             //инициализация хилок по списку, летают но пока ничего не делают
             for (int i = 0; i < health_count; i++)
             {
-                game_object.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                __GameObjects.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                     new Point(-rnd.Next(0, health_speed), 0), health_size));
             }
 
             __Bullet = new Bullet(200);
-            __GameObjects = game_object.ToArray();//здесь мы превратили список в массив
+            
 
             //корабль
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
@@ -180,13 +179,13 @@ namespace Stars_Game
 
         public static void Update()
         {
-            foreach (var game_object in __GameObjects)
+            foreach(VisualObject game_object in __GameObjects)
             {
                 game_object?.Update();
                 __Bullet?.Update();
-
-
-                for (int i = 0; i < __GameObjects.Length; i++)
+            }
+              
+                for (int i = 0; i < __GameObjects.Count; i++)
                 {
                     var obj = __GameObjects[i];
                     if (obj is ICollision)
@@ -207,4 +206,4 @@ namespace Stars_Game
             }
         }
     }
-}
+
