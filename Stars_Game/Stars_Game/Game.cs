@@ -21,14 +21,15 @@ namespace Stars_Game
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        private static List<VisualObject> __GameObjects = new List<VisualObject>();//нужно переделать массив в список
-        private static List<Asteroids> __Asteroids = new List<Asteroids>();//создали отдельный список для астероидов
+        private static List<VisualObject> __GameObjects = new List<VisualObject>();
+        private static List<Asteroids> __Asteroids = new List<Asteroids>();
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
         private static Timer __Timer;
         private static int score = 0;
         private static Game_Interface __Interface;
+        private static Random rnd = new Random();
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -104,7 +105,7 @@ namespace Stars_Game
 
             }
 
-            Random rnd = new Random();
+            /*Random rnd = new Random();*/
 
             const int asteroid_count = 10;//здесь мы инициализируем астероиды и хилки
             const int asteroid_size = 25;
@@ -210,7 +211,13 @@ namespace Stars_Game
                             __Asteroids.RemoveAt(i);
                             score++;
                         }
+                    if(__SpaceShip.CheckCollision(__Asteroids[i]))//вот здесь исключение не пойму почему, ругается на индекс за пределом диапазона 
+                    {
+                        __SpaceShip.EnergyLow(rnd.Next(1, 5));
 
+                        if (__SpaceShip.EnergyShip <= 0)  __SpaceShip.Update();
+
+                    }
                 }
 
             }
