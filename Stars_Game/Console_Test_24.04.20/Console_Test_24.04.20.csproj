@@ -6,4 +6,10 @@
     <RootNamespace>Console_Test_24._04._20</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="Names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

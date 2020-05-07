@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
 
     internal class Asteroids : ImageObject, ICollision
     {
-        public int Power { get; private set; } = 15;
+        public int Power { get; private set; } = 5;
 
 
         ///<summary>Добавление астероида из Ресурсов </summary>

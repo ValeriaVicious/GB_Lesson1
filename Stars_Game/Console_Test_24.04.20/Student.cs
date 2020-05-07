@@ -66,5 +66,8 @@ namespace Console_Test_24._04._20
             if (other == null) return false;
             return Name == other || Surname == other || Patronimyc == other;
         }
+
+        public override string ToString() => $"[{Id}] {Surname} {Name} {Patronimyc}";
+
     }
 }

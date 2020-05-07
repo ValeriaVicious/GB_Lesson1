@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -20,12 +21,15 @@ namespace Stars_Game
         private const int __TimerInterval = 100;
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        private static VisualObject[] __GameObjects;
+        private static List<VisualObject> __GameObjects = new List<VisualObject>();
+        private static List<Asteroids> __Asteroids = new List<Asteroids>();
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
         private static Timer __Timer;
         private static int score = 0;
+        private static Game_Interface __Interface;
+        private static Random rnd = new Random();
 
         /// <summary> Ширина игровой формы </summary>
         public static int Width { get; private set; }
@@ -33,8 +37,9 @@ namespace Stars_Game
         public static int Height { get; private set; }
 
 
+
         /// <summary> Инициализация игровой логики </summary>
-        /// <param name="form">Игровая форма</param>
+       
         public static void Initialize(Form game_form)
         {
             Width = game_form.Width;
@@ -92,18 +97,16 @@ namespace Stars_Game
 
         public static void Load()
         {
-            List<VisualObject> game_object = new List<VisualObject>();
 
             for (int i = 0; i < 10; i++)
             {
-                game_object.Add(new Star(
+                __GameObjects.Add(new Star(
                     new Point(600, i / 2 * 20),
                     new Point(-i, 0), 30));
 
             }
 
-            Random rnd = new Random();
-
+            
             const int asteroid_count = 10;
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
@@ -113,32 +116,39 @@ namespace Stars_Game
             const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
-                game_object.Add(new Asteroids(new Point(rnd.Next(0, Width),
-                    rnd.Next(0, Height)),
+                __Asteroids.Add(new Asteroids(new Point(rnd.Next(150, Width),
+                    rnd.Next(150, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
-            //инициализация хилок по списку, летают но пока ничего не делают
             for (int i = 0; i < health_count; i++)
             {
-                game_object.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                __GameObjects.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                     new Point(-rnd.Next(0, health_speed), 0), health_size));
             }
 
             __Bullet = new Bullet(200);
-            __GameObjects = game_object.ToArray();
-
-            //корабль
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
             __SpaceShip.Destroyed += OnShipDestroyed;
 
 
         }
 
-        /// <summary>
-        /// описание метода графики уничтожения корабля и конца игры
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <summary>Метод регенерации астероидов</summary>
+        public static void RegenerateAsteroids()
+        {
+            const int asteroid_count = 10;
+            const int asteroid_size = 25;
+            const int asteroid_max_speed = 22;
+
+            for (int i = 0; i < asteroid_count + 1; i++)
+            {
+                __Asteroids.Add(new Asteroids(new Point(rnd.Next(200, Width), rnd.Next(200, Height)),
+                    new Point(-rnd.Next(0, asteroid_max_speed)), asteroid_size));
+            }
+
+        }
+
+        /// <summary>описание метода графики уничтожения корабля и конца игры</summary>
         private static void OnShipDestroyed(object sender, EventArgs e)
         {
             __Timer.Stop();
@@ -155,55 +165,77 @@ namespace Stars_Game
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
             g.DrawImage(background, 0, 0);
-            g.DrawString("Количество сбитых астероидов: " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 0);
+
+            __Interface = new Game_Interface(new Point(0, 0), new Point(0, 0), new Size(0, 0));
+            g.DrawString(" " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
+            g.DrawString(" " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 265, 40);
+            __Interface.Draw(g);
 
             foreach (var game_object in __GameObjects)
 
                 game_object?.Draw(g);
+
+            foreach (Asteroids asteroids in __Asteroids)
+            {
+                asteroids.Draw(g);
+            }
 
             __SpaceShip?.Draw(g);
             __Bullet?.Draw(g);
 
             if (__SpaceShip != null)
 
-                g.DrawString("Здоровье мартышки: " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 0, 40);
-
-            if (!__Timer.Enabled) return;
+                if (!__Timer.Enabled) return;
 
             __Buffer.Render();
 
         }
 
-
-
         public static void Update()
         {
-            foreach (var game_object in __GameObjects)
+            foreach (VisualObject game_object in __GameObjects)
             {
                 game_object?.Update();
                 __Bullet?.Update();
+            }
 
+            foreach (Asteroids asteroids in __Asteroids)
+            {
+                asteroids.Update();
+            }
 
-                for (int i = 0; i < __GameObjects.Length; i++)
+            for (int i = 0; i < __Asteroids.Count; i++)
+            {
+                var obj = __Asteroids[i];
+                if (obj is ICollision)
                 {
-                    var obj = __GameObjects[i];
-                    if (obj is ICollision)
+                    var collision_object = (ICollision)obj;
+
+                    if (__Bullet != null)
+                        if (__Bullet.CheckCollision(collision_object))
+                        {
+                            __Bullet = null;
+                            __Asteroids.RemoveAt(i);
+                            score++;
+                        }
+
+                    if (__Asteroids.Count == 0)
                     {
-                        var collision_object = (ICollision)obj;
-
-
-                        __SpaceShip.CheckCollision(collision_object);//столкновение объекта с кораблем
-
-                        if (__Bullet != null)
-                            if (__Bullet.CheckCollision(collision_object))
-                            {
-                                __Bullet = null;
-                                __GameObjects[i] = null;
-                                score++;
-                            }
+                        RegenerateAsteroids();
                     }
+
                 }
+
+                if (__SpaceShip.CheckCollision(obj))
+                {
+                    __SpaceShip.EnergyLow(rnd.Next(1, 5));
+
+                    if (__SpaceShip.EnergyShip <= 0) __SpaceShip.Update();
+
+                }
+
             }
         }
     }
 }
+

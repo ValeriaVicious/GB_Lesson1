@@ -33,6 +33,11 @@ namespace Stars_Game.VisualObjects
         {
             _Position = new Point(_Position.X + __BulletSpeed, _Position.Y);
         }
+
+        public static implicit operator List<object>(Bullet v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

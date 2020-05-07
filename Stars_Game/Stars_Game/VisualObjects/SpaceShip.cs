@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
     internal class SpaceShip : VisualObject, ICollision
     {
 
-        private int _EnergyShip = 100;
+        private int _EnergyShip = 200;
 
         public SpaceShip(Point Position, Point Direction, Size Size, object Object) : base(Position, Direction, Size)
         {
