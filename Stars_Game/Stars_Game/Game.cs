@@ -37,8 +37,9 @@ namespace Stars_Game
         public static int Height { get; private set; }
 
 
+
         /// <summary> Инициализация игровой логики </summary>
-        /// <param name="form">Игровая форма</param>
+       
         public static void Initialize(Form game_form)
         {
             Width = game_form.Width;
@@ -99,15 +100,14 @@ namespace Stars_Game
 
             for (int i = 0; i < 10; i++)
             {
-                __GameObjects.Add(new Star(//это наши НЛОшки
+                __GameObjects.Add(new Star(
                     new Point(600, i / 2 * 20),
                     new Point(-i, 0), 30));
 
             }
 
-            /*Random rnd = new Random();*/
-
-            const int asteroid_count = 10;//здесь мы инициализируем астероиды и хилки
+            
+            const int asteroid_count = 10;
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
 
@@ -116,11 +116,10 @@ namespace Stars_Game
             const int health_speed = 20;
 
             for (int i = 0; i < asteroid_count; i++)
-                __Asteroids.Add(new Asteroids(new Point(rnd.Next(150, Width),//установила наождение астероидов в правой части карты
+                __Asteroids.Add(new Asteroids(new Point(rnd.Next(150, Width),
                     rnd.Next(150, Height)),
                     new Point(-rnd.Next(0, asteroid_max_speed), 0), asteroid_size));
 
-            //инициализация хилок по списку, летают но пока ничего не делают
             for (int i = 0; i < health_count; i++)
             {
                 __GameObjects.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
@@ -128,9 +127,6 @@ namespace Stars_Game
             }
 
             __Bullet = new Bullet(200);
-
-
-            //корабль
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
             __SpaceShip.Destroyed += OnShipDestroyed;
 
@@ -152,11 +148,7 @@ namespace Stars_Game
 
         }
 
-        /// <summary>
-        /// описание метода графики уничтожения корабля и конца игры
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <summary>описание метода графики уничтожения корабля и конца игры</summary>
         private static void OnShipDestroyed(object sender, EventArgs e)
         {
             __Timer.Stop();
