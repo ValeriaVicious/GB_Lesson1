@@ -10,7 +10,7 @@ namespace Stars_Game.VisualObjects
 
     internal class Asteroids : ImageObject, ICollision
     {
-        public int Power { get; private set; } = 5;
+        public int Power { get; private set; } = 10;
 
 
         ///<summary>Добавление астероида из Ресурсов </summary>

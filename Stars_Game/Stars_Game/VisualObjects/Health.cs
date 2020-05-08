@@ -10,13 +10,13 @@ namespace Stars_Game.VisualObjects
     /// <summary>Класс объекта для пополнения здоровья игрока</summary>
     internal class Health : ImageObject, ICollision
     {
-        public int Health_Power { get; private set; } = 10;
+        public int Health_Power { get; private set; } = 20;
         public Health(Point Position, Point Direction, int ImageSize) : 
             base(Position, Direction, new Size(ImageSize, ImageSize), Properties.Resources.powerup_banana)
         {
         }
 
-        public Rectangle Rect => new Rectangle();
+        public Rectangle Rect => new Rectangle(_Position, _Size);
 
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
         

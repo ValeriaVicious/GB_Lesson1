@@ -22,6 +22,11 @@ namespace Stars_Game.VisualObjects
         {
             _EnergyShip -= n;
         }
+
+        public void EnergyHigh(int n)
+        {
+            _EnergyShip += n;
+        }
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
         /// <summary>

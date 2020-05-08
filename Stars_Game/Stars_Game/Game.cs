@@ -23,11 +23,13 @@ namespace Stars_Game
         private static BufferedGraphics __Buffer;
         private static List<VisualObject> __GameObjects = new List<VisualObject>();
         private static List<Asteroids> __Asteroids = new List<Asteroids>();
+        private static List<Health> __Healths = new List<Health>();
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Bitmap background;
         private static Timer __Timer;
-        private static int score = 0;
+        private static int asteroid_score = 0;
+        private static int health_count = 0;
         private static Game_Interface __Interface;
         private static Random rnd = new Random();
 
@@ -39,7 +41,7 @@ namespace Stars_Game
 
 
         /// <summary> Инициализация игровой логики </summary>
-       
+
         public static void Initialize(Form game_form)
         {
             Width = game_form.Width;
@@ -106,7 +108,7 @@ namespace Stars_Game
 
             }
 
-            
+
             const int asteroid_count = 10;
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
@@ -122,13 +124,14 @@ namespace Stars_Game
 
             for (int i = 0; i < health_count; i++)
             {
-                __GameObjects.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                __Healths.Add(new Health(new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                     new Point(-rnd.Next(0, health_speed), 0), health_size));
             }
 
             __Bullet = new Bullet(200);
             __SpaceShip = new SpaceShip(new Point(10, 200), new Point(50, 50), new Size(50, 30), null);
             __SpaceShip.Destroyed += OnShipDestroyed;
+
 
 
         }
@@ -167,7 +170,7 @@ namespace Stars_Game
             g.DrawImage(background, 0, 0);
 
             __Interface = new Game_Interface(new Point(0, 0), new Point(0, 0), new Size(0, 0));
-            g.DrawString(" " + score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
+            g.DrawString(" " + asteroid_score, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 400, 0);
             g.DrawString(" " + __SpaceShip.EnergyShip, new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.PeachPuff, 265, 40);
             __Interface.Draw(g);
 
@@ -178,6 +181,11 @@ namespace Stars_Game
             foreach (Asteroids asteroids in __Asteroids)
             {
                 asteroids.Draw(g);
+            }
+
+            foreach (Health health in __Healths)
+            {
+                health.Draw(g);
             }
 
             __SpaceShip?.Draw(g);
@@ -204,6 +212,11 @@ namespace Stars_Game
                 asteroids.Update();
             }
 
+            foreach (Health health in __Healths)
+            {
+                health.Update();
+            }
+
             for (int i = 0; i < __Asteroids.Count; i++)
             {
                 var obj = __Asteroids[i];
@@ -216,7 +229,7 @@ namespace Stars_Game
                         {
                             __Bullet = null;
                             __Asteroids.RemoveAt(i);
-                            score++;
+                            asteroid_score++;
                         }
 
                     if (__Asteroids.Count == 0)
@@ -228,14 +241,34 @@ namespace Stars_Game
 
                 if (__SpaceShip.CheckCollision(obj))
                 {
-                    __SpaceShip.EnergyLow(rnd.Next(1, 5));
+                    __SpaceShip.EnergyLow(rnd.Next(1, 10));
 
                     if (__SpaceShip.EnergyShip <= 0) __SpaceShip.Update();
 
                 }
 
             }
+
+            for (int i = 0; i < __Healths.Count; i++)
+            {
+                var obj = __Healths[i];
+                if (obj is ICollision)
+                {
+                    var collision_object = (ICollision)obj;
+                }
+
+                if (__SpaceShip.CheckCollision(obj))
+                {
+                    __SpaceShip.EnergyHigh(rnd.Next(1, 20));
+
+                    __SpaceShip.Update();
+
+                }
+
+            }
         }
+
     }
 }
+
 
