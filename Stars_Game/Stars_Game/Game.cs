@@ -29,7 +29,6 @@ namespace Stars_Game
         private static Bitmap background;
         private static Timer __Timer;
         private static int asteroid_score = 0;
-        private static int health_count = 0;
         private static Game_Interface __Interface;
         private static Random rnd = new Random();
 
@@ -113,7 +112,7 @@ namespace Stars_Game
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
 
-            const int health_count = 10;
+            const int health_count = 5;
             const int health_size = 25;
             const int health_speed = 20;
 
