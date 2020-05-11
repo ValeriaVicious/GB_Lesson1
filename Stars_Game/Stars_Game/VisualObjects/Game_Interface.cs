@@ -21,6 +21,6 @@ namespace Stars_Game.VisualObjects
         }
 
         public override void Update() { }
-        
+
     }
 }
