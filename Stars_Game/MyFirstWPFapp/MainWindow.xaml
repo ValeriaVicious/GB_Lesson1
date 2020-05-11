@@ -49,8 +49,8 @@
                       VerticalAlignment="Top" Height="22" Margin="65,-50,430,0" Grid.ColumnSpan="4" Grid.Column="6"/>
             <Button Margin="218,0,37,-78" Height="28" VerticalAlignment="Bottom"
                     Click="Button_Click_dep" Grid.Column="9">Новый департамент</Button>
-
-
+            <Button Margin="46,0,261,-121" Height="22" VerticalAlignment="Bottom"
+Click="Button_Click_1" Grid.Column="9">Выход</Button>
         </Grid>
     </StackPanel>
 
