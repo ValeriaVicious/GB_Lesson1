@@ -80,6 +80,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" Text="Фамилия:" 
@@ -90,11 +91,14 @@
                                                HorizontalAlignment="Right"></TextBlock>
                                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Зарплата:" 
                                                HorizontalAlignment="Right"></TextBlock>
-                                
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Id:" 
+                                               HorizontalAlignment="Right" Margin="0,0,21,0"></TextBlock>
+
                                 <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Surname}"/>
                                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Name}"/>
                                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Age}"/>
                                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Salary}"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Id}"/>
                             </Grid>
                         </Grid>
                     </GroupBox>
