@@ -6,26 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyFirstWPFapp.Models
 {
-    class Departaments
+    internal class Departaments
     {
-        public class Departament
-        {
-            public string Name { get; set; }
-            public int Number { get; set; }
-
-            public override string ToString()
-            {
-                return $"{Name}\t{Number}";
-            }
-        }
-
-        void FillComboBox()
-        {
-            //departaments.Add(new Departament() { Number = 1, Name = "Департамент по делам кошачьих лапок" });
-            //departaments.Add(new Departament() { Number = 2, Name = "Департамент по делам пустых мисок" });
-            //departaments.Add(new Departament() { Number = 3, Name = "Департамент по делам с незаконным\nупотреблением валерьянки " });
-            ////lbDepartament.ItemsSource = departaments;
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Workers> Workers { get; set; } = new List<Workers>();
 
     }
 }
