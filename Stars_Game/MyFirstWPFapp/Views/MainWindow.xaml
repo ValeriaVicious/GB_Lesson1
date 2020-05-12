@@ -7,9 +7,13 @@
         xmlns:local="clr-namespace:MyFirstWPFapp"
         xmlns:services ="clr-namespace:WorkersManager.Services"
         xmlns:model ="clr-namespace:MyFirstWPFapp.Models"
+        xmlns:vm="clr-namespace:MyFirstWPFapp.ViewModel"
         mc:Ignorable="d"
-        Title="Департаменты и сотрудники" Height="503.369" Width="800"
+        Title="{Binding Title}" Height="503.369" Width="800"
         Background="AntiqueWhite">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
 
     <Window.Resources>
         <LinearGradientBrush x:Key="WindowBackgroundBrush">

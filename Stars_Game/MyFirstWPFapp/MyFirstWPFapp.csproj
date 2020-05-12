@@ -66,6 +66,8 @@
     <Compile Include="Models\Departaments.cs" />
     <Compile Include="Models\Workers.cs" />
     <Compile Include="Services\WorkersManager.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,7 +102,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
