@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFirstWPFapp.Services
+
+namespace WorkersManager.Services
 {
     class WorkersManager
     {
@@ -17,6 +18,7 @@ namespace MyFirstWPFapp.Services
                 .Select(i => new Departaments
                 {
                     Id = i,
+                    Name = $"Departament {i}",
                     Workers = Enumerable.Range(1, 5).
                     Select(j => new Workers
                     {

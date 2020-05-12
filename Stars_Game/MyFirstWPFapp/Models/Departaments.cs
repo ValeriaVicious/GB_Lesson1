@@ -12,5 +12,7 @@ namespace MyFirstWPFapp.Models
         public string Name { get; set; }
         public List<Workers> Workers { get; set; } = new List<Workers>();
 
+        public override string ToString() => $"[{Id}] {Name}";
+        
     }
 }

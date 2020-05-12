@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:MyFirstWPFapp"
+        xmlns:services ="clr-namespace:WorkersManager.Services"
         mc:Ignorable="d"
         Title="Департаменты и сотрудники" Height="503.369" Width="800"
         Background="AntiqueWhite">
@@ -14,9 +15,10 @@
             <GradientStop Offset="0" Color="Silver"/>
             <GradientStop Offset="1" Color="AliceBlue"/>
         </LinearGradientBrush>
-        
-        
+
+        <services:WorkersManager x:Key="WorkersManager"/>
     </Window.Resources>
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -32,7 +34,7 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Департамент">
-                        <ListBox></ListBox>
+                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}"></ListBox>
                     </GroupBox>
                     <GroupBox Header="Сотрудники департамента" Grid.Column="1">
                         <ListBox></ListBox>
