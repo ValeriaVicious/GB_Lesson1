@@ -59,7 +59,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <ListBox ItemsSource="{Binding SelectedValue.Workers, ElementName=DepList}" Name="WorkersList">
+                            <ListBox ItemsSource="{Binding SelectedValue.Workers, ElementName=DepList}" Name="DepWorkersList">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:Workers">
                                         <StackPanel Orientation="Horizontal">
@@ -108,7 +108,23 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Сотрудники"></TabItem>
+            <TabItem Header="Сотрудники">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Сотрудник">
+                        <ListBox>
+                            
+                        </ListBox>
+                    </GroupBox>
+                    <GroupBox Header="Департамент" Grid.Column="1"></GroupBox>
+                </Grid>
+
+            </TabItem>
+
+
         </TabControl>
     </DockPanel>
 

@@ -10,7 +10,7 @@ namespace WorkersManager.Services
 {
     class WorkersManager
     {
-        public List<Departaments> Departaments { get; private set; }
+        public List<Departaments> Departaments { get; }
         public WorkersManager()
         {
             int workers_id = 1;
@@ -19,8 +19,8 @@ namespace WorkersManager.Services
                 {
                     Id = i,
                     Name = $"Departament {i}",
-                    Workers = Enumerable.Range(1, 5).
-                    Select(j => new Workers
+                    Workers = Enumerable.Range(1, 5)
+                    .Select(j => new Workers
                     {
                         Id = workers_id,
                         Name = $"Name {workers_id}",
