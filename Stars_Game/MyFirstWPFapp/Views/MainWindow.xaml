@@ -22,6 +22,7 @@
         </LinearGradientBrush>
 
         <services:WorkersManager x:Key="WorkersManager"/>
+        <services:WorkersManager x:Key="Workers"/>
     </Window.Resources>
 
     <DockPanel>
@@ -95,7 +96,7 @@
                                                HorizontalAlignment="Right"></TextBlock>
                                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Зарплата:" 
                                                HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Id:" 
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="ID:" 
                                                HorizontalAlignment="Right" Margin="0,0,21,0"></TextBlock>
 
                                 <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Surname}"/>
@@ -111,15 +112,15 @@
             <TabItem Header="Сотрудники">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="179*"/>
+                        <ColumnDefinition Width="550*"/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Сотрудник">
-                        <ListBox>
-                            
-                        </ListBox>
+                    <GroupBox Header="Сотрудник" Grid.ColumnSpan="3"></GroupBox>
+                    <GroupBox Header="Департамент" Grid.Column="3">
+                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}"></ListBox>
                     </GroupBox>
-                    <GroupBox Header="Департамент" Grid.Column="1"></GroupBox>
                 </Grid>
 
             </TabItem>
