@@ -117,10 +117,30 @@
                         <ColumnDefinition Width="179*"/>
                         <ColumnDefinition Width="550*"/>
                     </Grid.ColumnDefinitions>
+
                     <GroupBox Header="Сотрудник" Grid.ColumnSpan="3"></GroupBox>
+
                     <GroupBox Header="Департамент" Grid.Column="3">
-                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}"></ListBox>
+                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}" 
+                                 DisplayMemberPath="Name" Margin="0,0,0,227">
+                        </ListBox>
                     </GroupBox>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Название департамента:" 
+                                   HorizontalAlignment="Right" Margin="0,194,-357,-194"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="ID:" HorizontalAlignment="Right" RenderTransformOrigin="25.25,14.353" Margin="0,216,-236,-216"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="382,194,-755,-194"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="266,216,-755,-216"/>
+                    </Grid>
                 </Grid>
 
             </TabItem>
