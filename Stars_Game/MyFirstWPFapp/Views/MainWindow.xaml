@@ -118,7 +118,21 @@
                         <ColumnDefinition Width="550*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Сотрудник" Grid.ColumnSpan="3"></GroupBox>
+                    <GroupBox Header="Сотрудник" Grid.ColumnSpan="3">
+                        <ListBox ItemsSource="{Binding Workers, Source={StaticResource WorkersManager}}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="models:Workers">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Surname}" Margin="0, 0, 5, 0"/>
+                                        <TextBlock Text="{Binding Name}" Margin="0, 0, 5, 0"/>
+                                        <TextBlock Text="{Binding Age}" Margin="0, 0, 5, 0"/>
+                                        <TextBlock Text="{Binding Salary}" Margin="0, 0, 5, 0"/>
+                                        <TextBlock Text="{Binding Id}" Margin="0, 0, 5, 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </GroupBox>
 
                     <GroupBox Header="Департамент" Grid.Column="3">
                         <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}" 
