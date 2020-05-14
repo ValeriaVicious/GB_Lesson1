@@ -112,8 +112,6 @@
             <TabItem Header="Сотрудники">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="32*"/>
                         <ColumnDefinition Width="179*"/>
                         <ColumnDefinition Width="550*"/>
                     </Grid.ColumnDefinitions>
