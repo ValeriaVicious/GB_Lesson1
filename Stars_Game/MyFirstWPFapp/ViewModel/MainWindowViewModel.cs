@@ -1,6 +1,8 @@
-﻿using MyFirstWPFapp.ViewModel.Base;
+﻿using MyFirstWPFapp.Models;
+using MyFirstWPFapp.ViewModel.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +18,7 @@ namespace MyFirstWPFapp.ViewModel
             get => _Title;
             set => Set(ref _Title, value);
         }
+
+        public ObservableCollection<Departaments> Departaments;
     }
 }
