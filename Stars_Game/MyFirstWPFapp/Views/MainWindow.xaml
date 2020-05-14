@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:MyFirstWPFapp"
         xmlns:services ="clr-namespace:WorkersManager.Services"
-        xmlns:model ="clr-namespace:MyFirstWPFapp.Models"
+        xmlns:models ="clr-namespace:MyFirstWPFapp.Models"
         xmlns:vm="clr-namespace:MyFirstWPFapp.ViewModel"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="503.369" Width="800"
