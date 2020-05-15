@@ -148,10 +148,10 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Column="1" Grid.Row="1" Text="Название департамента:" 
-                                   HorizontalAlignment="Right" Margin="0,194,-357,-194"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="ID:" HorizontalAlignment="Right" RenderTransformOrigin="25.25,14.353" Margin="0,216,-236,-216"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Margin="382,194,-755,-194"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Margin="266,216,-755,-216"/>
+                                   HorizontalAlignment="Center" Margin="0,194,-357,-194" RenderTransformOrigin="-0.756,0.298"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="ID:" HorizontalAlignment="Center" RenderTransformOrigin="25.25,14.353" Margin="208,218,-29,-218"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="356,194,-580,-194"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="234,218,-580,-218"/>
                     </Grid>
                 </Grid>
 
