@@ -19,7 +19,10 @@ namespace MyFirstWPFapp.Views
     /// </summary>
     public partial class EditWindow : Window
     {
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }
 
