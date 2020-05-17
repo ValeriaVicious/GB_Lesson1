@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,38 @@ namespace MyFirstWPFapp.Views
     /// </summary>
     public partial class EditWindow : Window
     {
+        public DataRow resultRow { get; set; }
+
+        public EditWindow(DataRow dataRow)
+        {
+            InitializeComponent();
+            resultRow = dataRow;
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            NameTxtBox.Text = resultRow["Name"].ToString();
+            SurnameTxtBox.Text = resultRow["Surname"].ToString();
+            DepartamentTxtBox.Text = resultRow["Departament"].ToString();
+            SalaryTxtBox.Text = resultRow["Salary"].ToString();
+            AgeTxtBox.Text = resultRow["Age"].ToString();
 
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            resultRow["Name"] = NameTxtBox.Text;
+            resultRow["Surname"] = SurnameTxtBox.Text;
+            resultRow["Departament"] = DepartamentTxtBox.Text;
+            resultRow["Salary"] = SalaryTxtBox.Text;
+            resultRow["Age"] = AgeTxtBox.Text;
+            DialogResult = true;
+        }
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
+
 
