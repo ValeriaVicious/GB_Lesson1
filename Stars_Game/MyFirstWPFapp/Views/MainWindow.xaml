@@ -9,8 +9,42 @@
         xmlns:models ="clr-namespace:MyFirstWPFapp.Models"
         xmlns:vm="clr-namespace:MyFirstWPFapp.ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="503.369" Width="800"
-        Background="AntiqueWhite">
+        Title="{Binding Title}" Height="450" Width="500" Background="AntiqueWhite" Loaded="Window_Loaded">
+
+
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21*"></RowDefinition>
+            <RowDefinition Height="398*"/>
+        </Grid.RowDefinitions>
+
+
+        <DataGrid x:Name="WorkersDataGrid" AutoGenerateColumns="False"
+              EnableColumnVirtualization="True" ItemsSource="{Binding}" Margin="20, 20, 40, 60"
+              HorizontalAlignment="Center" IsReadOnly ="True" Grid.RowSpan="2" FontFamily="Times New Roman">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" Header="ID"
+                                    IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn x:Name="NameColumn" Binding="{Binding Name}" Header="Имя"
+                                    Width="Auto"/>
+                <DataGridTextColumn x:Name="SurnameColumn" Binding="{Binding Surname}" Header="Фамилия"
+                                    Width="Auto"/>
+                <DataGridTextColumn x:Name="AgeColumn" Binding="{Binding Age}" Header="Возраст"
+                                    Width="Auto"/>
+                <DataGridTextColumn x:Name="DepartamentColumn" Binding="{Binding Departament}" Header="Должность"
+                                    Width="Auto"/>
+                <DataGridTextColumn x:Name="SalaryColumn" Binding="{Binding Salary}" Header="Зарплата"
+                                    Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="addBtn" Content="Добавить" Click="addBtn_Click" Grid.Column="0" Width="70" Height="30" HorizontalAlignment="Left" Margin="20,358,0,10" 
+                VerticalAlignment="Center" FontFamily="Times New Roman" Grid.Row="1"/>
+        <Button x:Name="delBtn" Content="Удалить" Click="deleteBtn_Click" Grid.Column="0" Grid.Row="1"
+                Width="70" Height="30" HorizontalAlignment="Center" Margin="138,358,153,10" VerticalAlignment="Center" FontFamily="Times New Roman"/>
+        <Button x:Name="changeBtn" Content="Изменить" Click="changeBtn_Click" Grid.Column="0" Grid.Row="1" Margin="0,358,40,10" Width="70" Height="30"
+                HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman"/>
+    </Grid>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -24,141 +58,5 @@
         <services:WorkersManager x:Key="WorkersManager"/>
         <services:WorkersManager x:Key="Workers"/>
     </Window.Resources>
-
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Закрыть"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="О программе"></MenuItem>
-        </Menu>
-        <TabControl>
-            <TabItem Header="Департаменты">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
-                    </Grid.ColumnDefinitions>
-                    <GroupBox Header="Департамент">
-                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}" Name="DepList">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="models:Departaments">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Id, StringFormat= [{0}]}"/>
-
-                                        <TextBlock Text ="{Binding Name}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-
-                    </GroupBox>
-                    <GroupBox Header="Сотрудники департамента" Grid.Column="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <ListBox ItemsSource="{Binding SelectedValue.Workers, ElementName=DepList}" Name="DepWorkersList">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="models:Workers">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Surname}" Margin="0, 0, 5, 0"/>
-                                            <TextBlock Text="{Binding Name}" Margin="0, 0, 5, 0"/>
-                                            <TextBlock Text="{Binding Age}" Margin="0, 0, 5, 0"/>
-                                            <TextBlock Text="{Binding Salary}" Margin="0, 0, 5, 0"/>
-                                            <TextBlock Text="{Binding Id}" Margin="0, 0, 5, 0"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-
-                            </ListBox>
-                            <Grid Grid.Row="1" DataContext="{Binding SelectedValue, ElementName=WorkersList}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Фамилия:" 
-                                               HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя:" 
-                                               HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Возраст" 
-                                               HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock Grid.Column="0" Grid.Row="3" Text="Зарплата:" 
-                                               HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock Grid.Column="0" Grid.Row="4" Text="ID:" 
-                                               HorizontalAlignment="Right" Margin="0,0,21,0"></TextBlock>
-
-                                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Surname}"/>
-                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Name}"/>
-                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Age}"/>
-                                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Salary}"/>
-                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Id}"/>
-                            </Grid>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Сотрудники">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="179*"/>
-                        <ColumnDefinition Width="550*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <GroupBox Header="Сотрудник" Grid.ColumnSpan="3">
-                        <ListBox ItemsSource="{Binding Workers, Source={StaticResource WorkersManager}}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="models:Workers">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Surname}" Margin="0, 0, 5, 0"/>
-                                        <TextBlock Text="{Binding Name}" Margin="0, 0, 5, 0"/>
-                                        <TextBlock Text="{Binding Age}" Margin="0, 0, 5, 0"/>
-                                        <TextBlock Text="{Binding Salary}" Margin="0, 0, 5, 0"/>
-                                        <TextBlock Text="{Binding Id}" Margin="0, 0, 5, 0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </GroupBox>
-
-                    <GroupBox Header="Департамент" Grid.Column="3">
-                        <ListBox ItemsSource="{Binding Departaments, Source={StaticResource WorkersManager}}" 
-                                 DisplayMemberPath="Name" Margin="0,0,0,227">
-                        </ListBox>
-                    </GroupBox>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Название департамента:" 
-                                   HorizontalAlignment="Center" Margin="0,194,-357,-194" RenderTransformOrigin="-0.756,0.298"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="ID:" HorizontalAlignment="Center" RenderTransformOrigin="25.25,14.353" Margin="208,218,-29,-218"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Margin="356,194,-580,-194"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Margin="234,218,-580,-218"/>
-                    </Grid>
-                </Grid>
-
-            </TabItem>
-
-
-        </TabControl>
-    </DockPanel>
 
 </Window>

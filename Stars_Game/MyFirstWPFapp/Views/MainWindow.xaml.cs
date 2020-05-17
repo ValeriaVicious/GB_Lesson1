@@ -33,5 +33,10 @@ namespace MyFirstWPFapp
         {
 
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
