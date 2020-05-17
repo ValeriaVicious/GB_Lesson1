@@ -15,7 +15,7 @@
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="21*"></RowDefinition>
-            <RowDefinition Height="398*"/>
+            <RowDefinition Height="398"/>
         </Grid.RowDefinitions>
 
 
