@@ -9,7 +9,7 @@
         xmlns:models ="clr-namespace:MyFirstWPFapp.Models"
         xmlns:vm="clr-namespace:MyFirstWPFapp.ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="500" Background="AntiqueWhite" Loaded="Window_Loaded">
+        Title="{Binding Title}" Height="450" Width="500" Background="AntiqueWhite" Loaded="Window_Loaded" Style="{Binding WindowBackgroundBrush}">
 
 
     <Grid HorizontalAlignment="Center">
