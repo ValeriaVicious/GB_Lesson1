@@ -50,5 +50,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FileHosting.Interface\FileHosting.Interface.csproj">
+      <Project>{c1f0edbd-ce49-41b2-82c5-58e426c6ebf8}</Project>
+      <Name>FileHosting.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
