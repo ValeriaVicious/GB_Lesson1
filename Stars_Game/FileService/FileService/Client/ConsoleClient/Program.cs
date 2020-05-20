@@ -17,7 +17,7 @@ namespace ConsoleClient
             FileServiceClient serviceClient = new FileServiceClient(new BasicHttpBinding(),
                 new EndpointAddress("http://localhost:8080/FileService"));
 
-            FileInfo[] files = serviceClient.GetFiles(@"C:\Users\User\Desktop\Учеба.Вебинары");
+            FileInfo[] files = serviceClient.GetFiles(@"c:\123");
 
             foreach(FileInfo file in files)
             {

@@ -19,21 +19,11 @@ namespace FileHosting
         static void Main(string[] args)
         {
             ServiceHost host = new ServiceHost(typeof(FileService),
-                new Uri("https://localhost:8080/FileService"),
-                new Uri("net.tcp://localhost/FileService"),
-                new Uri("net.pipe://localhost/FileService"));
+                new Uri("https://localhost:8080/FileService"));
 
             host.AddServiceEndpoint(typeof(IFileService),
                 new BasicHttpsBinding(),
                 "https://localhost:8080/FileService");
-
-            host.AddServiceEndpoint(typeof(IFileService),
-                new NetTcpBinding(),
-                "net.tcp://localhost/FileService");
-
-            host.AddServiceEndpoint(typeof(IFileService),
-                new NetNamedPipeBinding(),
-                "net.pipe://localhost/FileService");
 
             host.Description.Behaviors.Add(new ServiceMetadataBehavior{
                 HttpsGetEnabled = true
@@ -41,11 +31,7 @@ namespace FileHosting
             
             host.AddServiceEndpoint(typeof(IMetadataExchange),
                 MetadataExchangeBindings.CreateMexHttpsBinding(), "mex");
-            host.AddServiceEndpoint(typeof(IMetadataExchange),
-                MetadataExchangeBindings.CreateMexTcpBinding(), "mex");
-            host.AddServiceEndpoint(typeof(IMetadataExchange),
-                MetadataExchangeBindings.CreateMexNamedPipeBinding(), "mex");
-
+           
             host.Open();
 
             
