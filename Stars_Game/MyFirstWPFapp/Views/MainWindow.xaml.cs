@@ -37,7 +37,7 @@ namespace MyFirstWPFapp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EmployeeDB;Integrated Security=True;";
+            /*string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EmployeeDB;Integrated Security=True;";
             connection = new SqlConnection(connectionString);
             dataAdapter = new SqlDataAdapter();
             SqlCommand command = new SqlCommand("SELECT ID, NAME, SURNAME, SALARY, AGE, DEPARTAMENT FROM Employees", connection);
@@ -78,7 +78,7 @@ namespace MyFirstWPFapp
             dataTable = new DataTable();
             dataAdapter.DeleteCommand = command;
             dataAdapter.Fill(dataTable);
-            WorkersDataGrid.DataContext = dataTable.DefaultView;
+            WorkersDataGrid.DataContext = dataTable.DefaultView;*/
         }
 
         /// <summary> Кнопка создания/добавления данных </summary>
