@@ -71,7 +71,7 @@ namespace MyFirstWPFapp
             dataAdapter.UpdateCommand = command;
 
             //DELETE
-            command = new SqlCommand("DELETE FROM Employees WHERE ID = @ID", connection);//получается, что при удалении я удаляю строку вместе с id, но не удаляю просто данные
+            command = new SqlCommand("DELETE FROM Employees WHERE ID = @ID", connection);
             parameter = command.Parameters.Add("@ID", SqlDbType.Int, 0, "ID");
             parameter.SourceVersion = DataRowVersion.Original;
             dataAdapter.DeleteCommand = command;

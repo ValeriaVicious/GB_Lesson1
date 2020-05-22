@@ -12,6 +12,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{46818F46-1E40-44F6-9516-84BBD51A2E2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstWPFapp", "MyFirstWPFapp\MyFirstWPFapp.csproj", "{DFA2CBEE-07A5-46E5-827B-7583437057D5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0098CA29-C7BC-44F7-9FA5-BC3823336CAF} = {0098CA29-C7BC-44F7-9FA5-BC3823336CAF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfToDataBase", "WcfToDataBase\WcfToDataBase.csproj", "{0098CA29-C7BC-44F7-9FA5-BC3823336CAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +36,10 @@ Global
 		{DFA2CBEE-07A5-46E5-827B-7583437057D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFA2CBEE-07A5-46E5-827B-7583437057D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFA2CBEE-07A5-46E5-827B-7583437057D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0098CA29-C7BC-44F7-9FA5-BC3823336CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0098CA29-C7BC-44F7-9FA5-BC3823336CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0098CA29-C7BC-44F7-9FA5-BC3823336CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0098CA29-C7BC-44F7-9FA5-BC3823336CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
