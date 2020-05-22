@@ -25,6 +25,18 @@
   <wsdl:message name="IService1_InsertEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_UpdateEmloyee_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmloyee" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateEmloyee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmloyeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmployeeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -37,6 +49,14 @@
     <wsdl:operation name="InsertEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertEmployee" message="tns:IService1_InsertEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertEmployeeResponse" message="tns:IService1_InsertEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmloyee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateEmloyee" message="tns:IService1_UpdateEmloyee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateEmloyeeResponse" message="tns:IService1_UpdateEmloyee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteEmployee" message="tns:IService1_DeleteEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteEmployeeResponse" message="tns:IService1_DeleteEmployee_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -61,6 +81,24 @@
     </wsdl:operation>
     <wsdl:operation name="InsertEmployee">
       <soap:operation soapAction="http://tempuri.org/IService1/InsertEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmloyee">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateEmloyee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmployee">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteEmployee" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

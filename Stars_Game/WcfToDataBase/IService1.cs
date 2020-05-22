@@ -20,6 +20,12 @@ namespace WcfToDataBase
         [OperationContract]
         int InsertEmployee(Employee employee);
 
+        [OperationContract]
+        int UpdateEmloyee(Employee employee);
+
+        [OperationContract]
+        int DeleteEmployee(Employee employee);
+
         // TODO: Добавьте здесь операции служб
     }
 

@@ -37,7 +37,7 @@ namespace MyFirstWPFapp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            /*string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EmployeeDB;Integrated Security=True;";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EmployeeDB;Integrated Security=True;";
             connection = new SqlConnection(connectionString);
             dataAdapter = new SqlDataAdapter();
             SqlCommand command = new SqlCommand("SELECT ID, NAME, SURNAME, SALARY, AGE, DEPARTAMENT FROM Employees", connection);
@@ -71,14 +71,14 @@ namespace MyFirstWPFapp
             dataAdapter.UpdateCommand = command;
 
             //DELETE
-            command = new SqlCommand("DELETE FROM Employees WHERE ID = @ID", connection);//получается, что при удалении я удаляю строку вместе с id, но не удаляю просто данные
+            command = new SqlCommand("DELETE FROM Employees WHERE ID = @ID", connection);
             parameter = command.Parameters.Add("@ID", SqlDbType.Int, 0, "ID");
             parameter.SourceVersion = DataRowVersion.Original;
             dataAdapter.DeleteCommand = command;
             dataTable = new DataTable();
             dataAdapter.DeleteCommand = command;
             dataAdapter.Fill(dataTable);
-            WorkersDataGrid.DataContext = dataTable.DefaultView;*/
+            WorkersDataGrid.DataContext = dataTable.DefaultView;
         }
 
         /// <summary> Кнопка создания/добавления данных </summary>

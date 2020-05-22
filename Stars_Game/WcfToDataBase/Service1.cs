@@ -15,8 +15,6 @@ namespace WcfToDataBase
     {
         SqlConnection connection;
         SqlDataAdapter dataAdapter;
-        DataTable dataTable;
-        SqlCommand command;
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EmployeeDB;Integrated Security=True;";
 
         void ConnectToDataBase()
@@ -25,6 +23,11 @@ namespace WcfToDataBase
             dataAdapter = new SqlDataAdapter();
             SqlCommand command = new SqlCommand("SELECT ID, NAME, SURNAME, SALARY, AGE, DEPARTAMENT FROM Employees", connection);
             dataAdapter.SelectCommand = command;
+        }
+
+        public Service1()
+        {
+            ConnectToDataBase();
         }
 
         public string GetData(int value)
@@ -47,15 +50,15 @@ namespace WcfToDataBase
 
         public int InsertEmployee(Employee employee)
         {
+            SqlCommand command = new SqlCommand();
             try
-            {
+            { 
                 command.CommandText = @"INSERT INTO Employees (NAME, SURNAME, SALARY, AGE, DEPARTAMENT";
                 command.Parameters.AddWithValue("@NAME", employee.Name);
                 command.Parameters.AddWithValue("@SURNAME", employee.Surname);
                 command.Parameters.AddWithValue("@SALARY", employee.Salary);
                 command.Parameters.AddWithValue("@AGE", employee.Age);
                 command.Parameters.AddWithValue("@DEPARTAMENT", employee.Departament);
-                command.Parameters.AddWithValue("@ID", employee.Id);
 
                 command.CommandType = CommandType.Text;
                 connection.Open();
@@ -67,11 +70,21 @@ namespace WcfToDataBase
             }
             finally
             {
-                if(command != null)
+                if (command != null)
                 {
                     connection.Close();
                 }
             }
+        }
+
+        public int UpdateEmloyee(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteEmployee(Employee employee)
+        {
+            throw new NotImplementedException();
         }
     }
 }

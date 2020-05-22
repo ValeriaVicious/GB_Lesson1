@@ -90,9 +90,6 @@ namespace MyFirstWPFapp.ServiceReference1 {
         private string DepartamentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -133,19 +130,6 @@ namespace MyFirstWPFapp.ServiceReference1 {
                 if ((object.ReferenceEquals(this.DepartamentField, value) != true)) {
                     this.DepartamentField = value;
                     this.RaisePropertyChanged("Departament");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -220,6 +204,18 @@ namespace MyFirstWPFapp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertEmployee", ReplyAction="http://tempuri.org/IService1/InsertEmployeeResponse")]
         System.Threading.Tasks.Task<int> InsertEmployeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEmloyee", ReplyAction="http://tempuri.org/IService1/UpdateEmloyeeResponse")]
+        int UpdateEmloyee(MyFirstWPFapp.ServiceReference1.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEmloyee", ReplyAction="http://tempuri.org/IService1/UpdateEmloyeeResponse")]
+        System.Threading.Tasks.Task<int> UpdateEmloyeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteEmployee", ReplyAction="http://tempuri.org/IService1/DeleteEmployeeResponse")]
+        int DeleteEmployee(MyFirstWPFapp.ServiceReference1.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteEmployee", ReplyAction="http://tempuri.org/IService1/DeleteEmployeeResponse")]
+        System.Threading.Tasks.Task<int> DeleteEmployeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -271,6 +267,22 @@ namespace MyFirstWPFapp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<int> InsertEmployeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee) {
             return base.Channel.InsertEmployeeAsync(employee);
+        }
+        
+        public int UpdateEmloyee(MyFirstWPFapp.ServiceReference1.Employee employee) {
+            return base.Channel.UpdateEmloyee(employee);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateEmloyeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee) {
+            return base.Channel.UpdateEmloyeeAsync(employee);
+        }
+        
+        public int DeleteEmployee(MyFirstWPFapp.ServiceReference1.Employee employee) {
+            return base.Channel.DeleteEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteEmployeeAsync(MyFirstWPFapp.ServiceReference1.Employee employee) {
+            return base.Channel.DeleteEmployeeAsync(employee);
         }
     }
 }

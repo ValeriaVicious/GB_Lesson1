@@ -11,8 +11,6 @@ namespace WcfToDataBase
     public class Employee
     {
         [DataMember]
-        public int Id { get; set; }
-        [DataMember]
         public int Salary { get; set; }
         [DataMember]
         public int Age { get; set; }
@@ -20,7 +18,7 @@ namespace WcfToDataBase
         public string Name { get; set; }
         [DataMember]
         public string Surname { get; set; }
-        [DataMember] 
+        [DataMember]
         public string Departament { get; set; }
 
     }
